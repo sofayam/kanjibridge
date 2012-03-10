@@ -35,10 +35,10 @@ class Initialise(webapp.RequestHandler):
             k = Kanji()
             k.idx = rk['idx']
             k.keyword = rk['keyword']
-            k.glyph = rk['glyph']
+            k.glyph = unicode(rk['glyph'],encoding="utf-8")
             k.meaning = rk['meaning']
-            k.on = "x" #rk['on']
-            k.kun = "x" #rk['kun']
+            k.on = unicode(rk['on'],encoding="utf-8")
+            k.kun = unicode(rk['kun'],encoding="utf-8")
             k.put()
         self.redirect('/')
         
