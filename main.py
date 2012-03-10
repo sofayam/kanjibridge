@@ -30,13 +30,13 @@ class MainHandler(webapp.RequestHandler):
 class Initialise(webapp.RequestHandler):
     def get(self):
         rawDict = mergeinput.merge()
-        for idx in rawDict.keys()[0:5]:
+        for idx in rawDict.keys():
             rk = rawDict[idx]
             k = Kanji()
             k.idx = rk['idx']
-            k.keyword = rk['keyword']
+            k.keyword = unicode(rk['keyword'],encoding="utf-8")
             k.glyph = unicode(rk['glyph'],encoding="utf-8")
-            k.meaning = rk['meaning']
+            k.meaning = unicode(rk['meaning'],encoding="utf-8")
             k.on = unicode(rk['on'],encoding="utf-8")
             k.kun = unicode(rk['kun'],encoding="utf-8")
             k.put()

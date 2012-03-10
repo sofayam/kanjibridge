@@ -23,14 +23,14 @@ def merge():
     kd = {}
     for keyword in keywords.keywords:
         fields = keyword.split("\t")
-        k = {'idx': int(fields[4]), 'keyword': fields[1], 'glyph': force_utf8(fields[0])}
+        k = {'idx': int(fields[4]), 'keyword': force_utf8(fields[1]), 'glyph': force_utf8(fields[0])}
         kd[k['idx']] = k
 
 
     for meaning in meanings.meanings:
         fields = meaning.split("\t")
         idx = int(fields[3])
-        kd[idx]['meaning'] = fields[1]
+        kd[idx]['meaning'] = force_utf8(fields[1])
         kd[idx]['on'] = force_utf8(fields[4])
         kd[idx]['kun'] = force_utf8(fields[5])
 
