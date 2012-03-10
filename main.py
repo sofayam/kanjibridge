@@ -1,32 +1,52 @@
 #!/usr/bin/env python
 #
-# Copyright 2007 Google Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
+
 from google.appengine.ext import webapp
-from google.appengine.ext.webapp import util
+
+from google.appengine.api import users
+from google.appengine.ext.webapp.util import run_wsgi_app
+from google.appengine.ext import db
+
+
+import mergeinput
+
+class Kanji(db.Model):
+    idx = db.IntegerProperty()
+    keyword = db.StringProperty()
+    glyph = db.StringProperty()
+    meaning = db.StringProperty()
+    on = db.StringProperty()
+    kun = db.StringProperty()
 
 
 class MainHandler(webapp.RequestHandler):
     def get(self):
-        self.response.out.write('Hello world!')
+        idx = self.request.get('idx')
+        ks = Kanji.all().fetch(10)
+        for k in ks:
+            self.response.out.write(k.meaning)
+        self.response.out.write("finished")
 
-
+class Initialise(webapp.RequestHandler):
+    def get(self):
+        rawDict = mergeinput.merge()
+        for idx in rawDict.keys()[0:5]:
+            rk = rawDict[idx]
+            k = Kanji()
+            k.idx = rk['idx']
+            k.keyword = rk['keyword']
+            k.glyph = rk['glyph']
+            k.meaning = rk['meaning']
+            k.on = "x" #rk['on']
+            k.kun = "x" #rk['kun']
+            k.put()
+        self.redirect('/')
+        
 def main():
-    application = webapp.WSGIApplication([('/', MainHandler)],
+    application = webapp.WSGIApplication([('/', MainHandler),
+                                          ('/init', Initialise)],
                                          debug=True)
-    util.run_wsgi_app(application)
+    run_wsgi_app(application)
 
 
 if __name__ == '__main__':
