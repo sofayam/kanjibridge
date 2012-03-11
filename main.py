@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 #
+import os
 
 from google.appengine.ext import webapp
+from google.appengine.ext.webapp import template
 
 from google.appengine.api import users
 from google.appengine.ext.webapp.util import run_wsgi_app
@@ -42,25 +44,43 @@ class Initialise(webapp.RequestHandler):
             k.put()
         self.redirect('/')
 
-class Question(webapp.RequestHandler):
+class QKeyword(webapp.RequestHandler):
     def get(self):
         q = db.Query(Kanji)
         idx = int(self.request.get('idx'))
         q.filter("idx =", idx)
         kanji = q.get()
         if kanji:
-            self.response.out.write("found kanji %s" % kanji.keyword)        
+            path = os.path.join(os.path.dirname(__file__), 'keyword.html')
+            template_values = {
+                'idx': kanji.idx,
+                'keyword': kanji.keyword
+                }
+            self.response.out.write(template.render(path, template_values))
         else:
-            self.response.out.write("nothing found for idx %d" % idx)        
-class Answer(webapp.RequestHandler):
+            self.response.out.write("nothing found for idx %d" % idx)  
+      
+class QKanji(webapp.RequestHandler):
     def get(self):
-        idx = self.request.get('idx')
+        q = db.Query(Kanji)
+        idx = int(self.request.get('idx'))
+        q.filter("idx =", idx)
+        kanji = q.get()
+        if kanji:
+            path = os.path.join(os.path.dirname(__file__), 'kanji.html')
+            template_values = {
+                'glyph': kanji.glyph,
+                'meaning': kanji.meaning
+                }
+            self.response.out.write(template.render(path, template_values))
+        else:
+            self.response.out.write("nothing found for idx %d" % idx)  
         
 def main():
     application = webapp.WSGIApplication([('/', MainHandler),
                                           ('/init', Initialise),
-                                          ('/question', Question),
-                                          ('/answer', Answer)],
+                                          ('/keyword', QKeyword),
+                                          ('/kanji', QKanji)],
                                          debug=True)
     run_wsgi_app(application)
 
