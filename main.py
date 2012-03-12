@@ -71,17 +71,37 @@ class QKanji(webapp.RequestHandler):
             template_values = {
                 'glyph': kanji.glyph,
                 'meaning': kanji.meaning,
+                'idx': idx
+                }
+            self.response.out.write(template.render(path, template_values))
+        else:
+            self.response.out.write("nothing found for idx %d" % idx)  
+
+class QReadings(webapp.RequestHandler):
+    def get(self):
+        q = db.Query(Kanji)
+        idx = int(self.request.get('idx'))
+        q.filter("idx =", idx)
+        kanji = q.get()
+        if kanji:
+            path = os.path.join(os.path.dirname(__file__), 'readings.html')
+            template_values = {
+                'glyph': kanji.glyph,
+                'on': kanji.on,
+                'kun': kanji.kun,
                 'nextidx': idx+1
                 }
             self.response.out.write(template.render(path, template_values))
         else:
             self.response.out.write("nothing found for idx %d" % idx)  
+
         
 def main():
     application = webapp.WSGIApplication([('/', MainHandler),
                                           ('/init', Initialise),
                                           ('/keyword', QKeyword),
-                                          ('/kanji', QKanji)],
+                                          ('/kanji', QKanji),
+                                          ('/readings', QReadings)],
                                          debug=True)
     run_wsgi_app(application)
 
