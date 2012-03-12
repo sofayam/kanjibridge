@@ -70,7 +70,8 @@ class QKanji(webapp.RequestHandler):
             path = os.path.join(os.path.dirname(__file__), 'kanji.html')
             template_values = {
                 'glyph': kanji.glyph,
-                'meaning': kanji.meaning
+                'meaning': kanji.meaning,
+                'nextidx': idx+1
                 }
             self.response.out.write(template.render(path, template_values))
         else:
