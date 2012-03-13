@@ -4,22 +4,15 @@ import os
 
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
-
 from google.appengine.api import users
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext import db
+from google.appengine.ext.webapp.mail_handlers import InboundMailHandler
 
-
+from dbClasses import Kanji
 import mergeinput
 
-class Kanji(db.Model):
-    idx = db.IntegerProperty()
-    keyword = db.StringProperty()
-    glyph = db.StringProperty()
-    meaning = db.StringProperty()
-    on = db.StringProperty()
-    kun = db.StringProperty()
-
+import logging
 
 class MainHandler(webapp.RequestHandler):
     def get(self):
@@ -95,13 +88,18 @@ class QReadings(webapp.RequestHandler):
         else:
             self.response.out.write("nothing found for idx %d" % idx)  
 
+class LogSenderHandler(InboundMailHandler):
+    def receive(self,mail_message):
+        logging.debug("Recv. message from " + mail_message.sender)
         
 def main():
+    logging.getLogger().setLevel(logging.DEBUG)
     application = webapp.WSGIApplication([('/', MainHandler),
                                           ('/init', Initialise),
                                           ('/keyword', QKeyword),
                                           ('/kanji', QKanji),
-                                          ('/readings', QReadings)],
+                                          ('/readings', QReadings),
+                                          LogSenderHandler.mapping()],
                                          debug=True)
     run_wsgi_app(application)
 
