@@ -1,1 +1,1 @@
-hg pull http://sofayam:blabla@bitbucket.org/sofayam/kanjibridge
+hg pull http://bitbucket.org/sofayam/kanjibridge
