@@ -8,3 +8,8 @@ class Kanji(db.Model):
     on = db.StringProperty()
     kun = db.StringProperty()
 
+class Word(db.Model):
+    kaki = db.StringProperty()
+    yomi = db.StringProperty()
+    meaning = db.StringProperty()
+

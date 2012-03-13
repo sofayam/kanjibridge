@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 #
 import os
+import re
 
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
@@ -10,6 +11,8 @@ from google.appengine.ext import db
 from google.appengine.ext.webapp.mail_handlers import InboundMailHandler
 
 from dbClasses import Kanji
+from dbClasses import Word
+
 import mergeinput
 
 import logging
@@ -91,6 +94,45 @@ class QReadings(webapp.RequestHandler):
 class LogSenderHandler(InboundMailHandler):
     def receive(self,mail_message):
         logging.debug("Recv. message from " + mail_message.sender)
+        for content_type, body in mail_message.bodies('text/plain'):
+            btext = body.decode()
+            # logging.debug("Body is >>" + btext)
+            for item in btext.split("\n\n"):
+                spl = item.split("\n")
+                if len(spl) == 2:
+                    (eng, jap) = spl
+                    logging.debug("Found eng %s and jap %s" % (eng,jap)) 
+                    
+            self.response.out.write("nothing found for idx %d" % idx)  
+
+class LogSenderHandler(InboundMailHandler):
+    def receive(self,mail_message):
+        logging.debug("Recv. message from " + mail_message.sender)
+        for content_type, body in mail_message.bodies('text/plain'):
+            btext = body.decode()
+            # logging.debug("Body is >>" + btext)
+            for item in btext.split("\n\n"):
+                spl = item.split("\n")
+                if len(spl) == 2:
+                    (jap,eng) = spl
+                    logging.debug("Found eng %s and jap %s" % (eng,jap)) 
+                    #m = re.match(r"(\w+) \((\w+)\).*",jap)
+                    m = re.match(ur"(\w+)\uff08(\w+)\uff09",jap,re.UNICODE)
+                    if m:
+                        g =  m.groups()
+                        if len(g) == 2:
+                            k,p = g
+                            logging.debug("Kanji %s, Kana %s" % (k,p))
+                            w = Word()
+                            w.kaki = k
+                            w.yomi = p
+                            w.meaning = eng
+                            w.put()
+                    else:
+                        logging.debug("No match for >%s<",jap)
+                
+            
+            
         
 def main():
     logging.getLogger().setLevel(logging.DEBUG)
