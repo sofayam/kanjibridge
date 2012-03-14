@@ -20,7 +20,7 @@ import logging
 
 class MainHandler(webapp.RequestHandler):
     def get(self):
-
+        # TODO decent start page with useful links
         ks = Kanji.all().fetch(10)
         for k in ks:
             self.response.out.write(k.meaning)
@@ -28,8 +28,15 @@ class MainHandler(webapp.RequestHandler):
 
 class Initialise(webapp.RequestHandler):
     def get(self):
+        startraw = self.request.get('start')
+        if startraw:
+            start = int(startraw)
+        else:
+            start = 1
+
         rawDict = mergeinput.merge()
-        for idx in rawDict.keys():
+        for idx in sorted(rawDict.keys()):
+            if idx < start: continue
             rk = rawDict[idx]
             k = Kanji()
             k.idx = rk['idx']
@@ -94,23 +101,25 @@ class QReadings(webapp.RequestHandler):
 
 class Map(webapp.RequestHandler):
     def get(self):
-        ks = Kanji.all().fetch(1000)
-        hw = []
+        ctraw = self.request.get('ct')
+        if ctraw:
+            ct = int(ctraw)
+        else:
+            ct = 100
+        ks = Kanji.all().fetch(ct)
         for k in ks:
             q = db.Query(Word)
             q.filter("kanjis =", k.glyph)
             if q.get():
-                logging.debug("Found word using %s" % k.glyph)
-                hw.append(k)
+                #logging.debug("Found word using %s" % k.glyph)
                 k.color = "red"
             else:
                 k.color = "black"
-                logging.debug("No words using %s" % k.glyph)
+                #logging.debug("No words using %s" % k.glyph)
 
         path = os.path.join(os.path.dirname(__file__), 'map.html')
         template_values = {
             'kanjis': ks,
-            'hasWord': hw
             }
         self.response.out.write(template.render(path, template_values))
 
@@ -125,14 +134,14 @@ class LogSenderHandler(InboundMailHandler):
                 spl = item.split("\n")
                 if len(spl) == 2:
                     (jap,eng) = spl
-                    logging.debug("Found eng %s and jap %s" % (eng,jap)) 
+                    #logging.debug("Found eng %s and jap %s" % (eng,jap)) 
                     #m = re.match(r"(\w+) \((\w+)\).*",jap)
                     m = re.match(ur"(\w+)\uff08(\w+)\uff09",jap,re.UNICODE)
                     if m:
                         g =  m.groups()
                         if len(g) == 2:
                             k,p = g
-                            logging.debug("Kanji %s, Kana %s" % (k,p))
+                            #logging.debug("Kanji %s, Kana %s" % (k,p))
                             dbClasses.makeWord(k,p,eng)
                             #w = Word()
                             #w.kaki = k
