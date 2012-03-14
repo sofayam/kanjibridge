@@ -12,6 +12,7 @@ from google.appengine.ext.webapp.mail_handlers import InboundMailHandler
 
 from dbClasses import Kanji
 from dbClasses import Word
+import dbClasses
 
 import mergeinput
 
@@ -91,19 +92,28 @@ class QReadings(webapp.RequestHandler):
         else:
             self.response.out.write("nothing found for idx %d" % idx)  
 
-class LogSenderHandler(InboundMailHandler):
-    def receive(self,mail_message):
-        logging.debug("Recv. message from " + mail_message.sender)
-        for content_type, body in mail_message.bodies('text/plain'):
-            btext = body.decode()
-            # logging.debug("Body is >>" + btext)
-            for item in btext.split("\n\n"):
-                spl = item.split("\n")
-                if len(spl) == 2:
-                    (eng, jap) = spl
-                    logging.debug("Found eng %s and jap %s" % (eng,jap)) 
-                    
-            self.response.out.write("nothing found for idx %d" % idx)  
+class Map(webapp.RequestHandler):
+    def get(self):
+        ks = Kanji.all().fetch(1000)
+        hw = []
+        for k in ks:
+            q = db.Query(Word)
+            q.filter("kanjis =", k.glyph)
+            if q.get():
+                logging.debug("Found word using %s" % k.glyph)
+                hw.append(k)
+                k.color = "red"
+            else:
+                k.color = "black"
+                logging.debug("No words using %s" % k.glyph)
+
+        path = os.path.join(os.path.dirname(__file__), 'map.html')
+        template_values = {
+            'kanjis': ks,
+            'hasWord': hw
+            }
+        self.response.out.write(template.render(path, template_values))
+
 
 class LogSenderHandler(InboundMailHandler):
     def receive(self,mail_message):
@@ -123,11 +133,12 @@ class LogSenderHandler(InboundMailHandler):
                         if len(g) == 2:
                             k,p = g
                             logging.debug("Kanji %s, Kana %s" % (k,p))
-                            w = Word()
-                            w.kaki = k
-                            w.yomi = p
-                            w.meaning = eng
-                            w.put()
+                            dbClasses.makeWord(k,p,eng)
+                            #w = Word()
+                            #w.kaki = k
+                            #w.yomi = p
+                            #w.meaning = eng
+                            #w.put()
                     else:
                         logging.debug("No match for >%s<",jap)
                 
@@ -141,6 +152,7 @@ def main():
                                           ('/keyword', QKeyword),
                                           ('/kanji', QKanji),
                                           ('/readings', QReadings),
+                                          ('/map', Map),
                                           LogSenderHandler.mapping()],
                                          debug=True)
     run_wsgi_app(application)
