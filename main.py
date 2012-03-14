@@ -88,12 +88,33 @@ class QReadings(webapp.RequestHandler):
         q.filter("idx =", idx)
         kanji = q.get()
         if kanji:
+            q2 = db.Query(Word)
+            q2.filter("kanjis =", kanji.glyph)
+            words = q2.fetch(10)
             path = os.path.join(os.path.dirname(__file__), 'readings.html')
             template_values = {
-                'glyph': kanji.glyph,
-                'on': kanji.on,
-                'kun': kanji.kun,
+                'kanji': kanji,
+                'words': words,
                 'nextidx': idx+1
+                }
+            self.response.out.write(template.render(path, template_values))
+        else:
+            self.response.out.write("nothing found for idx %d" % idx)  
+
+class QWords(webapp.RequestHandler):
+    def get(self):
+        q1 = db.Query(Kanji)
+        idx = int(self.request.get('idx'))
+        q1.filter("idx =", idx)
+        kanji = q1.get()
+        if kanji:
+            q2 = db.Query(Word)
+            q2.filter("kanjis =", kanji.glyph)
+            words = q2.fetch(10)
+            path = os.path.join(os.path.dirname(__file__), 'words.html')
+            template_values = {
+                'kanji': kanji,
+                'words': words,
                 }
             self.response.out.write(template.render(path, template_values))
         else:
@@ -161,6 +182,7 @@ def main():
                                           ('/keyword', QKeyword),
                                           ('/kanji', QKanji),
                                           ('/readings', QReadings),
+                                          ('/words', QWords),
                                           ('/map', Map),
                                           LogSenderHandler.mapping()],
                                          debug=True)
