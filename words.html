@@ -5,19 +5,15 @@
   </head>
 
   <body>
-    <br><br><br>
-    <center><font size=20>{{kanji.glyph}}</font></center>
-    <br><br><br>
-    <center><font size=10>{{kanji.kun}}</font></center>
-    <br>
-    <center><font size=10>{{kanji.on}}</font></center>
+    <br><br><br><br><br>
+    <center><font size=20>{{ kanji.glyph}}</font></center>
     <br><br><br><br><br>
     {% for word in words %}
-    <br><center>{{ word.kaki }} ( {{ word.yomi }} ) {{ word.meaning }}</center>
+    <br>{{ word.kaki }} ( {{ word.yomi }} ) {{ word.meaning }}
     {% endfor %}
     <br>
     <center>
-      <a href=/keyword?idx={{nextidx}}>next</a>
+      <a href=/readings?idx={{kanji.idx}}>back to readings</a>
     </center>
 
   </body>

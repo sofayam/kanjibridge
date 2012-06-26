@@ -6,9 +6,9 @@
 
   <body>
     {% for kanji in kanjis %}
-
+       <a href=readings?idx={{ kanji.idx }} style="text-decoration: none">
        <font size=20 color={{ kanji.color }}>{{ kanji.glyph }}</font>
-
+       </a>
     {% endfor %}
   </body>
 </html>
