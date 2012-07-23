@@ -1,0 +1,1 @@
+curl -H "Content-Type: text/json" -d @dl.txt http://localhost:8080/impex
