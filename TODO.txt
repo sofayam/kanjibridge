@@ -1,0 +1,22 @@
+*EC2
+
+Remap to port 80
+Sort out cost over 3 years
+
+
+*Seaside
+
+sniff user agent
+css tricks and pretty colours
+move to FileTree/git
+
+
+*App
+
+solve autocomplete bug
+words!
+
+
+*Google App Engine
+
+mail -> rest transformer for words
