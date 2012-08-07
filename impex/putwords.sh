@@ -1,0 +1,1 @@
+curl -H "Content-Type: text/json" -d @words.json http://localhost:8080/wordimpex
