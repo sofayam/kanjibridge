@@ -14,7 +14,13 @@ from dbClasses import Kanji
 from dbClasses import Word
 import dbClasses
 
+import urllib
+from google.appengine.api import urlfetch
 import mergeinput
+
+
+from django.utils import simplejson as json
+
 
 import logging
 
@@ -150,19 +156,34 @@ class LogSenderHandler(InboundMailHandler):
         logging.debug("Recv. message from " + mail_message.sender)
         for content_type, body in mail_message.bodies('text/plain'):
             btext = body.decode()
-            # logging.debug("Body is >>" + btext)
+            logging.debug("Body is >>" + btext)
+            payload = {}
+            payload['subject'] = mail_message.subject
+            payload['body'] = btext
+            #url = "http://54.247.111.190:8080/wordimpex"
+            url = "http://localhost:8080/wordimpex"
+            result = urlfetch.fetch(url = url, 
+                                    payload = json.dumps(payload), 
+                                    method = urlfetch.POST,
+                                    headers = {'Content-Type': 'text/json'})
+
+            logging.debug("returned from urlfetch")
+                              
+            return
             for item in btext.split("\n\n"):
                 spl = item.split("\n")
+                logging.debug("Split the item")
                 if len(spl) == 2:
                     (jap,eng) = spl
-                    #logging.debug("Found eng %s and jap %s" % (eng,jap)) 
+                    eng = eng[0:500]
+                    logging.debug("Found eng %s and jap %s" % (eng,jap)) 
                     #m = re.match(r"(\w+) \((\w+)\).*",jap)
                     m = re.match(ur"(\w+)\uff08(\w+)\uff09",jap,re.UNICODE)
                     if m:
                         g =  m.groups()
                         if len(g) == 2:
                             k,p = g
-                            #logging.debug("Kanji %s, Kana %s" % (k,p))
+                            logging.debug("Kanji %s, Kana %s" % (k,p))
                             dbClasses.makeWord(k,p,eng)
                             #w = Word()
                             #w.kaki = k
@@ -171,6 +192,8 @@ class LogSenderHandler(InboundMailHandler):
                             #w.put()
                     else:
                         logging.debug("No match for >%s<",jap)
+                else:
+                    logging.debug("item could not be split>%s<",item)
                 
             
             
