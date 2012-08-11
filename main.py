@@ -172,18 +172,18 @@ class LogSenderHandler(InboundMailHandler):
             return
             for item in btext.split("\n\n"):
                 spl = item.split("\n")
-                logging.debug("Split the item")
+                #logging.debug("Split the item")
                 if len(spl) == 2:
                     (jap,eng) = spl
                     eng = eng[0:500]
-                    logging.debug("Found eng %s and jap %s" % (eng,jap)) 
+                    #logging.debug("Found eng %s and jap %s" % (eng,jap)) 
                     #m = re.match(r"(\w+) \((\w+)\).*",jap)
                     m = re.match(ur"(\w+)\uff08(\w+)\uff09",jap,re.UNICODE)
                     if m:
                         g =  m.groups()
                         if len(g) == 2:
                             k,p = g
-                            logging.debug("Kanji %s, Kana %s" % (k,p))
+                            #logging.debug("Kanji %s, Kana %s" % (k,p))
                             dbClasses.makeWord(k,p,eng)
                             #w = Word()
                             #w.kaki = k
