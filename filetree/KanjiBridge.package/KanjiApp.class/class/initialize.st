@@ -2,6 +2,9 @@ as yet unclassified
 initialize 
 
 	"pointless comment"
+	
+	dirty := false.
+	
 	Kanji initialize.
 	KanjiView initialize. 
 	KanjiTagBackup initialize. 

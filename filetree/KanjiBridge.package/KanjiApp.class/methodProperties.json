@@ -1,6 +1,11 @@
 {
 	"class" : {
 		"homeDirectory" : "mwa 8/16/2012 19:00",
-		"initialize" : "mwa 8/23/2012 16:25" },
+		"initialize" : "mwa 8/23/2012 20:51",
+		"isDirty" : "mwa 8/23/2012 20:51",
+		"setClean" : "mwa 8/23/2012 20:52",
+		"setDirty" : "mwa 8/23/2012 20:52",
+		"style:" : "mwa 8/23/2012 21:06",
+		"userAgent:is:" : "mwa 8/23/2012 20:37" },
 	"instance" : {
 		 } }

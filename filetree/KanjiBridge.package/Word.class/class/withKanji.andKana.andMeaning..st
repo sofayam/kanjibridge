@@ -3,6 +3,7 @@ withKanji: aKanji andKana: aKana andMeaning: aMeaning
 	| word |
 	(allWords includesKey: aKanji) ifTrue: [^ false].
 	
+	KanjiApp setDirty.
 	word := Word new.
 	word usedKanjiInit.
 	word kanji: aKanji.

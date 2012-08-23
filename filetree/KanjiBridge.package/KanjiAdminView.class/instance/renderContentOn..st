@@ -19,6 +19,11 @@ renderContentOn: html
 	html anchor 
 		callback: [ self call: KanjiView new];
 		with: 'go to application'.
+		
+	html break.
+	
+	html text: 'User Agent' , (self session currentRequest headerAt: 'user-agent').
+	html break.
 	
 	
 		
