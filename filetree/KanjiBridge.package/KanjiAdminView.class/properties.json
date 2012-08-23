@@ -1,0 +1,14 @@
+{
+	"category" : "KanjiBridge",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
+	"name" : "KanjiAdminView",
+	"pools" : [
+		 ],
+	"super" : "WAComponent",
+	"type" : "normal" }

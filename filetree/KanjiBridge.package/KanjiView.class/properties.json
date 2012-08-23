@@ -1,0 +1,16 @@
+{
+	"category" : "KanjiBridge",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		"kanji",
+		"flipped",
+		"wordChildren" ],
+	"name" : "KanjiView",
+	"pools" : [
+		 ],
+	"super" : "WAComponent",
+	"type" : "normal" }
