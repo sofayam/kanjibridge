@@ -7,3 +7,5 @@ named: aName onObject: anObject
 	(tagsForObject includesKey: anObject) ifFalse:  [ tagsForObject at: anObject put: Set new].
 	(tagsForObject at: anObject) add: aName.
 	
+	KanjiApp setDirty.
+	
