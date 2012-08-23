@@ -4,6 +4,7 @@ initialize
 	"pointless comment"
 	
 	dirty := false.
+	lock := Semaphore forMutualExclusion.
 	
 	Kanji initialize.
 	KanjiView initialize. 

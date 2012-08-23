@@ -3,7 +3,8 @@
 	"classinstvars" : [
 		 ],
 	"classvars" : [
-		"dirty" ],
+		"dirty",
+		"lock" ],
 	"commentStamp" : "",
 	"instvars" : [
 		 ],
