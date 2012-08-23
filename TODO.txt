@@ -15,7 +15,7 @@ move to FileTree/git
 
 xsolve autocomplete bug
 words!
-regular autosave
+regular autosave - started once you have done a restore
 remote control for (repo update, save, save and quit)
 
 *Google App Engine
