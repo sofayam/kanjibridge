@@ -1,0 +1,14 @@
+{
+	"category" : "KanjiBridge",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
+	"name" : "KanjiTagBackup",
+	"pools" : [
+		 ],
+	"super" : "WARestfulHandler",
+	"type" : "normal" }

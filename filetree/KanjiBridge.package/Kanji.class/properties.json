@@ -1,0 +1,22 @@
+{
+	"category" : "KanjiBridge",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		"byGlyph",
+		"byIndex",
+		"byKeyword",
+		"tagDict" ],
+	"commentStamp" : "",
+	"instvars" : [
+		"glyph",
+		"keyword",
+		"meaning",
+		"index",
+		"on",
+		"kun" ],
+	"name" : "Kanji",
+	"pools" : [
+		 ],
+	"super" : "Object",
+	"type" : "normal" }
