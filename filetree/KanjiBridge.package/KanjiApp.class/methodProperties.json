@@ -1,11 +1,15 @@
 {
 	"class" : {
+		"backup" : "mwa 8/26/2012 06:42",
 		"homeDirectory" : "mwa 8/16/2012 19:00",
 		"initialize" : "mwa 8/23/2012 21:28",
 		"isDirty" : "mwa 8/23/2012 20:51",
 		"lock" : "mwa 8/23/2012 21:29",
+		"restore" : "mwa 8/26/2012 06:41",
 		"setClean" : "mwa 8/23/2012 20:52",
 		"setDirty" : "mwa 8/23/2012 20:52",
+		"startBackup" : "mwa 8/26/2012 07:12",
+		"stopBackup" : "mwa 8/26/2012 06:58",
 		"style:" : "mwa 8/23/2012 21:06",
 		"userAgent:is:" : "mwa 8/24/2012 11:46" },
 	"instance" : {

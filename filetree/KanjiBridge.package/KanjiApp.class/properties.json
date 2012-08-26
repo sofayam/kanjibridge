@@ -3,6 +3,7 @@
 	"classinstvars" : [
 		 ],
 	"classvars" : [
+		"bgbackup",
 		"dirty",
 		"lock" ],
 	"commentStamp" : "",

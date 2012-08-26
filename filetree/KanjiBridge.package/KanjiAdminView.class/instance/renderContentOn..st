@@ -5,13 +5,13 @@ renderContentOn: html
 	html break.
 	
 	html anchor
-		callback: [ Kanji restore. Word restore];
+		callback: [ KanjiApp restore];
 		with: 'restore'.
 		
 	html break.
 	
 	html anchor
-		callback: [ Kanji backup. Word backup];
+		callback: [ KanjiApp backup];
 		with: 'backup'.
 		
 	html break.
