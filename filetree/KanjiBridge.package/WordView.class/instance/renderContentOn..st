@@ -52,7 +52,7 @@ renderContentOn: html
 			size: 15;
 			script: (html jQuery this autocomplete
 				sourceCallback: [ :term | Word containsTag: term]);
-			callback: [ :value | (self word) tag: value].
+			callback: [ :value |  KanjiApp doCriticalDirty: [ (self word) tag: value]].
 	].	
 
 		

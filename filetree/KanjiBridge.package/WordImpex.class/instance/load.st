@@ -21,6 +21,7 @@ load
 
 	entries := body findTokens: (String with: (Character lf)).
 
+	KanjiApp doCritical: [
 	entries pairsDo: [ :jap :meaning |
 		opbOff := jap findString: (String with: opb).
 		clbOff := jap findString: (String with: clb).
@@ -33,6 +34,7 @@ load
 	        	word := Word withKanji: kanji  andKana: kana andMeaning: meaning.
 			word tag: subject.
 		]
+	   ]
 		 
 	].
 	
