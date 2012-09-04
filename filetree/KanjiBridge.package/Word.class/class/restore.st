@@ -4,7 +4,7 @@ restore
 	| f inp json wrd newWord |
 	
 	KanjiApp doCritical: [
-	f := FileStream oldFileNamed: (KanjiApp homeDirectory , '/kanjibridge/impex/wordbackup.txt' ).
+	f := FileStream oldFileNamed: Word backupFileName.
 	inp := f upToEnd.
 	json := JSJsonParser parse: inp.
 	json keysDo: [ : key | 

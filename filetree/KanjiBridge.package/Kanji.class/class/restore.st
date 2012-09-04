@@ -4,7 +4,7 @@ restore
 
 	| json f inp |
 	KanjiApp doCritical: [
-	 f := FileStream oldFileNamed: (KanjiApp homeDirectory , '/kanjibridge/impex/kanjitagbackup.txt' ).
+	 f := FileStream oldFileNamed: Kanji backupFileName.
 	 inp := f upToEnd.
 	 json := JSJsonParser parse: inp.
 	

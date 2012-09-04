@@ -3,7 +3,7 @@ backup
 
 	| f |
 	KanjiApp doCriticalClean: [
-	  f := FileStream forceNewFileNamed: (KanjiApp homeDirectory , '/kanjibridge/impex/wordbackup.txt' ).
+	  f := FileStream forceNewFileNamed: Word backupFileName.
 	  f nextPutAll: Word allWords asJson.
 	  f close.
 	]
