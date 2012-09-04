@@ -4,7 +4,7 @@ renderContentOn: html
 
 	html anchor 
 		callback: [ self call: KanjiView new];
-		with: 'kanjis'.
+		with: 'go to application'.
 		
 	html break.
 
@@ -14,6 +14,7 @@ renderContentOn: html
 		
 	html break.
 	
+
 
 
 	html text: '------------ Admin Stuff --------'.
@@ -29,15 +30,27 @@ renderContentOn: html
 	
 	html anchor
 		callback: [ KanjiApp backup];
-		with: 'backup'.
+		with: 'one time backup'.
 		
 	html break.
 	
+	
 	html anchor 
-		callback: [ self call: KanjiView new];
-		with: 'go to application'.
+		callback: [ KanjiApp startBackup ];
+		with: 'start background backup'.
 		
 	html break.
+
+	html  text: KanjiApp bgbackupStatus.
+
+	html break.
+
+	html anchor 
+		callback: [ KanjiApp stopBackup ];
+		with: 'stop background backup'.
+		
+	html break.
+
 
 
 	html anchor 
