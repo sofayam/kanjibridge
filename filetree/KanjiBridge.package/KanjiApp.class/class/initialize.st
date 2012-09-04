@@ -4,7 +4,6 @@ initialize
 	dirty := false.
 	kanjiLock := Semaphore forMutualExclusion.
 	lastBackup := nil.
-	bgbackup := false.
 	
 	Kanji initialize.
 	KanjiView initialize. 
