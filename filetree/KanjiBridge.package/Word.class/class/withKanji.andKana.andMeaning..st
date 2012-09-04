@@ -1,7 +1,8 @@
 as yet unclassified
 withKanji: aKanji andKana: aKana andMeaning: aMeaning
 	| word |
-	(allWords includesKey: aKanji) ifTrue: [^ false].
+	(allWords includesKey: aKanji) ifTrue: 
+	[^ Word withKanji: aKanji].
 	
 
 
