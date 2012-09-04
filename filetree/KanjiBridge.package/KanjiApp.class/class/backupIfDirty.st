@@ -4,5 +4,6 @@ backupIfDirty
 	(KanjiApp isDirty) ifTrue:
 	   [	
 			KanjiApp backup.
-			Transcript show: '*backed up*'
+			Transcript show: '*backed up*'.
+
 	 ]

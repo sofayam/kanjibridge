@@ -39,6 +39,8 @@ renderContentOn: html
 	html break.
 
 	html  text: KanjiApp bgbackupStatus.
+	html break.
+	html  text: 'Last backup: ' , KanjiApp timeSinceBackup.
 
 	html break.
 
