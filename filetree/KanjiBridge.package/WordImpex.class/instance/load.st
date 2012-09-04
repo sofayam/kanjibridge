@@ -12,7 +12,7 @@ load
 
      json := JSJsonParser parse: self requestContext request rawBody.
 
-     Transcript show: json.
+     "Transcript show: json."
 	subject := json at: 'subject'.
       body := json at: 'body'.
 
