@@ -2,7 +2,6 @@
 	"class" : {
 		"initialize" : "mwa 7/24/2012 13:27" },
 	"instance" : {
-		"addTag" : "mwa 9/3/2012 18:58",
 		"back" : "mwa 6/27/2012 22:16",
 		"children" : "mwa 8/16/2012 20:45",
 		"flip" : "mwa 6/27/2012 22:03",
@@ -13,7 +12,7 @@
 		"nextKanji" : "mwa 8/16/2012 21:17",
 		"nextKanji:" : "mwa 8/16/2012 21:16",
 		"onBack" : "mwa 6/27/2012 22:18",
-		"renderContentOn:" : "mwa 8/22/2012 18:30",
+		"renderContentOn:" : "mwa 9/4/2012 10:15",
 		"style" : "mwa 8/23/2012 20:32",
 		"wordChildren" : "mwa 8/16/2012 20:20",
 		"wordChildren:" : "mwa 8/16/2012 20:20" } }

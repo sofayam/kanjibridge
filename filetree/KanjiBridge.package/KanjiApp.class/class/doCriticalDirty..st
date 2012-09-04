@@ -3,5 +3,6 @@ doCriticalDirty: someCode
 
 	KanjiApp kanjiLock critical: [
 		someCode value.
+		
 		KanjiApp setDirty
 		]

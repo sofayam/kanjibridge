@@ -93,7 +93,7 @@ renderContentOn: html
 			size: 15;
 			script: (html jQuery this autocomplete
 				sourceCallback: [ :term | Kanji containsTag: term]);
-			callback: [ :value | (self kanji) tag: value].
+			callback: [ :value | KanjiApp doCriticalDirty: [ (self kanji) tag: value]].
 	].	
 	
 	html break.
