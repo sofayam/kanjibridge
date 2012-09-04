@@ -1,10 +1,9 @@
 as yet unclassified
 initialize 
-
-	"pointless comment"
 	
 	dirty := false.
 	kanjiLock := Semaphore forMutualExclusion.
+	lastBackup := nil.
 	
 	Kanji initialize.
 	KanjiView initialize. 

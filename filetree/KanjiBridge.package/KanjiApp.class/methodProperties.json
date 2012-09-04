@@ -1,7 +1,7 @@
 {
 	"class" : {
-		"backup" : "mwa 8/26/2012 06:42",
-		"backupIfDirty" : "mwa 9/4/2012 10:04",
+		"backup" : "mwa 9/4/2012 18:26",
+		"backupIfDirty" : "mwa 9/4/2012 18:26",
 		"bgbackupStatus" : "mwa 9/4/2012 11:25",
 		"delayedInitialize" : "mwa 9/3/2012 21:04",
 		"doCritical:" : "mwa 9/3/2012 20:43",
@@ -9,7 +9,7 @@
 		"doCriticalDirty:" : "mwa 9/4/2012 10:22",
 		"homeDirectory" : "mwa 8/16/2012 19:00",
 		"impexRoot" : "mwa 9/4/2012 17:37",
-		"initialize" : "mwa 9/3/2012 22:15",
+		"initialize" : "mwa 9/4/2012 18:22",
 		"isDeployed" : "mwa 9/4/2012 17:31",
 		"isDirty" : "mwa 8/23/2012 20:51",
 		"kanjiLock" : "mwa 9/3/2012 18:48",
@@ -19,6 +19,7 @@
 		"startBackup" : "mwa 9/4/2012 10:52",
 		"stopBackup" : "mwa 8/26/2012 06:58",
 		"style:" : "mwa 8/23/2012 21:06",
+		"timeSinceBackup" : "mwa 9/4/2012 18:29",
 		"userAgent:is:" : "mwa 8/24/2012 11:46" },
 	"instance" : {
 		 } }
