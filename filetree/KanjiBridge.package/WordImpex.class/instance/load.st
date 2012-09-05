@@ -7,7 +7,7 @@ load
 	load words from Japanese Dictionary app via GAE mail/json gateway
 	"
 	
-	| json body entries subject opb clb opbOff clbOff kana kanji word |
+	| json body entries subject opb clb opbOff clbOff kana kanji word firstCR jap meaning |
 	
 
      json := JSJsonParser parse: self requestContext request rawBody.
@@ -19,10 +19,14 @@ load
      opb := Character value: 65288.
      clb := Character value: 65289.
 
-	entries := body findTokens: (String with: (Character lf)).
+	entries := body.
 
 	KanjiApp doCritical: [
-	entries pairsDo: [ :jap :meaning |
+	entries do: [ :entry |
+		firstCR := entry findString: (String with: (Character lf)).
+		jap := entry copyFrom: 1 to: (firstCR - 1).
+		meaning := entry copyFrom: (firstCR + 1) to: (entry size).
+		
 		opbOff := jap findString: (String with: opb).
 		clbOff := jap findString: (String with: clb).
 		 (opbOff < clbOff) ifTrue: [ 

@@ -14,6 +14,13 @@ renderContentOn: html
 		
 	html break.
 
+	html anchor 
+		callback: [ self call: (WordView newWithWord: (Word anyWord))];
+		with: 'word'.
+		
+	html break.
+
+
 	html text: '------------ Admin Stuff --------'.
 	html break.
 	
