@@ -22,10 +22,7 @@ renderContentOn: html
 
       html horizontalRule.
 	html text: 'A d m i n'.
-      html horizontalRule.
-	html break.
-	
-	
+      html horizontalRule.	
 	
 	html anchor
 		callback: [ KanjiApp restore];
