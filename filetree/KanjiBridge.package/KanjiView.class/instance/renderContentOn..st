@@ -36,7 +36,11 @@ renderContentOn: html
 			with: 'details'
 	] ifTrue: [
 
-		html text: self kanji meaning
+
+		html break.
+		html text: self kanji on, ' // ', self kanji kun.
+		html break.
+		html text: self kanji meaning.
 	].
 "
 	html heading: 'words'.

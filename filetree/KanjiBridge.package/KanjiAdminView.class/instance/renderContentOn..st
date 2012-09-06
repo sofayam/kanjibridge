@@ -16,7 +16,7 @@ renderContentOn: html
 
 	html anchor 
 		callback: [ self call: (WordView newWithWord: (Word anyWord))];
-		with: 'word'.
+		with: ( 'word (' , Word count asString  , ')' ).
 		
 	html break.
 
@@ -62,6 +62,12 @@ renderContentOn: html
 	html anchor 
 		callback: [ KanjiApp delayedInitialize];
 		with: 'initialize (Zaps everything)'.
+		
+	html break.
+
+	html anchor 
+		callback: [ KanjiApp loadChanges ];
+		with: 'load Changes from filetree repository'.
 		
 	html break.
 
