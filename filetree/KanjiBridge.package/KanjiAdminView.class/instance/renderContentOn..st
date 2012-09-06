@@ -10,18 +10,18 @@ renderContentOn: html
 
 	html anchor 
 		callback: [ self call: KanjiTagListView new];
-		with: 'ktags'.
+		with: ('ktags(' , (Kanji tagDict allTags size asString) , ')' ).
 		
 	html break.
 
 	html anchor 
 		callback: [ self call: (WordView newWithWord: (Word anyWord))];
-		with: ( 'word (' , Word count asString  , ')' ).
+		with: ( 'words (' , Word count asString  , ')' ).
 		
 	html break.
 
-
-	html text: '------------ Admin Stuff --------'.
+      html horizontalRule.
+	html text: 'A d m i n'.
 	html break.
 	
 	
@@ -67,7 +67,7 @@ renderContentOn: html
 
 	html anchor 
 		callback: [ KanjiApp loadChanges ];
-		with: 'load Changes from filetree repository'.
+		with: 'load code changes from repository'.
 		
 	html break.
 
