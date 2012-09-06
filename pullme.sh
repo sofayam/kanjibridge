@@ -1,3 +1,3 @@
-hg pull http://bitbucket.org/sofayam/kanjibridge
-hg update
+./hg pull http://bitbucket.org/sofayam/kanjibridge
+./hg update
 

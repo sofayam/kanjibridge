@@ -4,3 +4,4 @@ __deployed__
 *.pyc
 *~
 .DS_Store
+hg
