@@ -1,6 +1,7 @@
 access
 kanji: aKanji
 	| wordEntries words |
+
 	kanji := aKanji.
 	"Now set up children"
 	words :=  Word wordsForKanji:  (self kanji index).
