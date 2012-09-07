@@ -1,4 +1,4 @@
 as yet unclassified
 pushHg
 
-	 KanjiApp localCommand: 'pushme.sh'
+	 KanjiApp pushHg: 'No Comment'

@@ -7,4 +7,5 @@ saveChanges: commitMessage
 			'/kanjibridge/filetree/'));
         package: 'KanjiBridge';
         commit: commitMessage.
-	KanjiApp pushHg
+	
+	KanjiApp pushHg: commitMessage
