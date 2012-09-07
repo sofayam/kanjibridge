@@ -1,3 +1,3 @@
 ./hg add .
-./hg ci -m "more stuff"
+./hg ci -m $1
 ./hg push http://bitbucket.org/sofayam/kanjibridge
