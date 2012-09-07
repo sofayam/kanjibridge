@@ -21,7 +21,7 @@ renderContentOn: html
 	html break.
 
       html horizontalRule.
-	html text: 'A d m i n'.
+	html text: '* A d m i n *'.
       html horizontalRule.	
 	
 	html anchor
