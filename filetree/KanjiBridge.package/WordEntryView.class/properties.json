@@ -1,0 +1,14 @@
+{
+	"category" : "KanjiBridge",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		"word" ],
+	"name" : "WordEntryView",
+	"pools" : [
+		 ],
+	"super" : "WAComponent",
+	"type" : "normal" }

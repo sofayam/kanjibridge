@@ -1,5 +1,7 @@
 syntax: glob
 
+__deployed__
 *.pyc
 *~
 .DS_Store
+hg

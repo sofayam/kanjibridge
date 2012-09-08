@@ -1,0 +1,21 @@
+{
+	"category" : "KanjiBridge",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		"allWords",
+		"allWordsByKana",
+		"allWordsByMeaning",
+		"kanjiDict",
+		"tagDict" ],
+	"commentStamp" : "",
+	"instvars" : [
+		"kanji",
+		"kana",
+		"meaning",
+		"usedKanji" ],
+	"name" : "Word",
+	"pools" : [
+		 ],
+	"super" : "Object",
+	"type" : "normal" }

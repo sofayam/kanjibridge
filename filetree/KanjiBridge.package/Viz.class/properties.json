@@ -1,0 +1,14 @@
+{
+	"category" : "KanjiBridge",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		"g" ],
+	"commentStamp" : "",
+	"instvars" : [
+		"l" ],
+	"name" : "Viz",
+	"pools" : [
+		 ],
+	"super" : "Object",
+	"type" : "normal" }

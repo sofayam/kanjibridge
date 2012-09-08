@@ -1,0 +1,15 @@
+{
+	"category" : "KanjiBridge",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		"lines",
+		"count" ],
+	"name" : "UploadForm",
+	"pools" : [
+		 ],
+	"super" : "WAComponent",
+	"type" : "normal" }

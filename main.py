@@ -159,9 +159,9 @@ class LogSenderHandler(InboundMailHandler):
             logging.debug("Body is >>" + btext)
             payload = {}
             payload['subject'] = mail_message.subject
-            payload['body'] = btext
-            #url = "http://54.247.111.190:8080/wordimpex"
-            url = "http://localhost:8080/wordimpex"
+            payload['body'] = btext.split("\n\n")
+            url = "http://54.247.111.190:8080/wordimpex"
+            #url = "http://localhost:8080/wordimpex"
             result = urlfetch.fetch(url = url, 
                                     payload = json.dumps(payload), 
                                     method = urlfetch.POST,

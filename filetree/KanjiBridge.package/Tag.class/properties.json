@@ -1,0 +1,16 @@
+{
+	"category" : "KanjiBridge",
+	"classinstvars" : [
+		"ObjectsWithTag",
+		"TagsForObject" ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		"objectsWithTag",
+		"tagsForObject" ],
+	"name" : "Tag",
+	"pools" : [
+		 ],
+	"super" : "Object",
+	"type" : "normal" }
