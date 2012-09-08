@@ -20,14 +20,8 @@ renderContentOn: html
 		
 	html break.
 
-	html anchor 
-		callback: [ self call: (WordTagListView new)];
-		with: ( 'wtags (' , (Word tagDict allTags size asString)  , ')' ).
-		
-	html break.
-
       html horizontalRule.
-	html text: '* A d m i n *'.
+	html text: 'A d m i n'.
       html horizontalRule.	
 	
 	html anchor
