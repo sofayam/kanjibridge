@@ -4,4 +4,4 @@ localCommand: fileName
 	| cmd |
 	cmd :=  '(cd ' , KanjiApp homeDirectory , '/kanjibridge ; ./' , fileName , ')'.
 
-	PipeableOSProcess command: cmd.
+	Transcript show: (PipeableOSProcess command: cmd) output
