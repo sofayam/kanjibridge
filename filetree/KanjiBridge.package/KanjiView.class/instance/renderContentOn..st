@@ -30,12 +30,17 @@ renderContentOn: html
 		with:  'Next'.
 	html break.
 	
+	html break.
+	html text: self kanji on, ' // ', self kanji kun.
+	html break.
+	html text: self kanji meaning.
+
+"	
 	self onBack ifFalse: [
 		html anchor
 			callback: [self back];
 			with: 'details'
 	] ifTrue: [
-
 
 		html break.
 		html text: self kanji on, ' // ', self kanji kun.
@@ -43,13 +48,7 @@ renderContentOn: html
 		html text: self kanji meaning.
 	].
 "
-	html heading: 'words'.
-	html break.
-	html unorderedList: [
-	(Word wordsForKanji:  (self kanji)) do: [ :word |
-		word renderOn: html]
-	].
-"
+
 	html break.
 	html break.
 	html text: 'TAGS'.
@@ -86,12 +85,7 @@ renderContentOn: html
 		].
 		html break.
 	
-		
-	"
-	html anchor 
-		callback: [ self addTag  ];
-		with: 'add'.
-	"
+
 	html form: [
 		html text: 'New Tag '.
 		html textInput
