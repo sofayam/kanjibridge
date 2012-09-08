@@ -1,7 +1,7 @@
 as yet unclassified
 renderContentOn: html
 
-	html text: 'Kanjis for tag' , theTag.
+	html text: 'Kanjis for tag: ' , theTag.
 	html break.
  	(Kanji tagDict objectsWithTag: theTag) do: [ :alsoTagged |
 		html anchor callback: [ self call: (KanjiView new kanji: (Kanji withIndex: alsoTagged)) ]; 
