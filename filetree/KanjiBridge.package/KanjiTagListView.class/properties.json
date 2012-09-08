@@ -10,5 +10,5 @@
 	"name" : "KanjiTagListView",
 	"pools" : [
 		 ],
-	"super" : "WAComponent",
+	"super" : "KBComponent",
 	"type" : "normal" }

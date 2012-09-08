@@ -10,5 +10,5 @@
 	"name" : "WordEntryView",
 	"pools" : [
 		 ],
-	"super" : "WAComponent",
+	"super" : "KBComponent",
 	"type" : "normal" }

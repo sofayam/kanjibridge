@@ -55,9 +55,6 @@ renderContentOn: html
 			callback: [ :value |  KanjiApp doCriticalDirty: [ (self word) tag: value]].
 	].	
 
-	html break.
-	html anchor 
-		callback: [ self call: KanjiAdminView new];
-		with: 'admin page'.
-	
+
+	self footer: html
 	
