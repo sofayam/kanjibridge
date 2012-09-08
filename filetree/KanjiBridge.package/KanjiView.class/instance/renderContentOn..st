@@ -61,7 +61,10 @@ renderContentOn: html
 			html anchor callback: [ kanji := alsoTagged ]; 
 				with: (alsoTagged glyph) 
 			].
-		html anchor callback: [ kanji deleteTag: name]; with: 'del'.
+		html anchor callback: [ 
+			(self confirm: 'Are you sure?')
+				ifTrue: [ kanji deleteTag: name]]; 
+		with: 'del'.
 		html break.
 	].
 	
@@ -100,11 +103,7 @@ renderContentOn: html
 			callback: [ :value | KanjiApp doCriticalDirty: [ (self kanji) tag: value]].
 	].	
 	
-	html break.
-	html anchor 
-		callback: [ self call: KanjiAdminView new];
-		with: 'admin page'.
-	
+	self footer: html
 	
 
 		

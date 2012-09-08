@@ -6,11 +6,9 @@
 		 ],
 	"commentStamp" : "",
 	"instvars" : [
-		"kanji",
-		"flipped",
-		"wordChildren" ],
-	"name" : "KanjiView",
+		 ],
+	"name" : "KBComponent",
 	"pools" : [
 		 ],
-	"super" : "KBComponent",
+	"super" : "WAComponent",
 	"type" : "normal" }

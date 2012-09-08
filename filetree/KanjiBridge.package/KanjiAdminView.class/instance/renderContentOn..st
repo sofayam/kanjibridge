@@ -9,15 +9,21 @@ renderContentOn: html
 	html break.
 
 	html anchor 
+		callback: [ self call: (WordView newWithWord: (Word anyWord))];
+		with: ( 'words (' , Word count asString  , ')' ).
+		
+	html break.
+	
+	html anchor 
 		callback: [ self call: KanjiTagListView new];
 		with: ('ktags(' , (Kanji tagDict allTags size asString) , ')' ).
 		
 	html break.
-
+	
 	html anchor 
-		callback: [ self call: (WordView newWithWord: (Word anyWord))];
-		with: ( 'words (' , Word count asString  , ')' ).
-		
+		callback: [ self call: (WordTagListView new)];
+		with: ( 'wtags (' , (Word tagDict allTags size asString)  , ')' ).
+
 	html break.
 
       html horizontalRule.

@@ -6,10 +6,8 @@
 		 ],
 	"commentStamp" : "",
 	"instvars" : [
-		"kanji",
-		"flipped",
-		"wordChildren" ],
-	"name" : "KanjiView",
+		"theTag" ],
+	"name" : "WordTagDeepView",
 	"pools" : [
 		 ],
 	"super" : "KBComponent",

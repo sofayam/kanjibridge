@@ -7,7 +7,9 @@ renderContentOn: html
 	Kanji tagDict allTags sorted do: [ :theTag |
 		
 		
- 	 	html text:  theTag. 
+
+		html anchor callback: [ self call: (KanjiTagDeepView new tag: theTag)];
+			with: theTag.
 		html text: ' '.
 		(Kanji tagDict objectsWithTag: theTag) do: [ :alsoTagged |
 			html anchor callback: [ self call: (KanjiView new kanji: (Kanji withIndex: alsoTagged)) ]; 
@@ -18,8 +20,6 @@ renderContentOn: html
 
 	].
 
-	html break.
-	html anchor 
-		callback: [ self call: KanjiAdminView new];
-		with: 'admin page'.
+	self footer: html
+
 	
