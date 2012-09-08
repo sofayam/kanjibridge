@@ -55,7 +55,9 @@ renderContentOn: html
 	html break.
 	
 	(Kanji tagsForObject:  (self kanji)) do: [ :name |
-		html text: name.
+
+		html anchor callback: [ self call: (KanjiTagDeepView new tag: name)];
+			with: name , ' '.
 		(Kanji objectsWithTag: name) do: [ :alsoTagged |
 			html anchor callback: [ kanji := alsoTagged ]; 
 				with: (alsoTagged glyph) 
