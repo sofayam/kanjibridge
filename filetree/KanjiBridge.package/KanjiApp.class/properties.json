@@ -1,0 +1,17 @@
+{
+	"category" : "KanjiBridge",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		"bgbackup",
+		"dirty",
+		"kanjiLock",
+		"lastBackup" ],
+	"commentStamp" : "mwa 9/4/2012 11:37",
+	"instvars" : [
+		 ],
+	"name" : "KanjiApp",
+	"pools" : [
+		 ],
+	"super" : "Object",
+	"type" : "normal" }
