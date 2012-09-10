@@ -8,6 +8,7 @@ renderContentOn: html
 		id: 'f';
 		size: 15 ;
 		autocapitalize: 'off';
+		autocorrect: 'off';
 		script: (html jQuery this autocomplete
 			sourceCallback: [ :term | Kanji containsString: term]);
 		callback: [ :value | self kanji:  (Kanji withWhatever: value otherwise: kanji)].
@@ -92,6 +93,7 @@ renderContentOn: html
 		html text: 'New Tag '.
 		html textInput
 			id: 't';
+			autocapitalize: 'off';
 			autocapitalize: 'off';
 			size: 15;
 			script: (html jQuery this autocomplete

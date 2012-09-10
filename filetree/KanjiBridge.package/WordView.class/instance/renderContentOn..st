@@ -49,6 +49,7 @@ renderContentOn: html
 		html textInput
 			id: 't';
 			autocapitalize: 'off';
+			autocorrect: 'off';			
 			size: 15;
 			script: (html jQuery this autocomplete
 				sourceCallback: [ :term | Word containsTag: term]);
