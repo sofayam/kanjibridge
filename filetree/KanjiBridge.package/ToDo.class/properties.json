@@ -1,0 +1,16 @@
+{
+	"category" : "KanjiBridge",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		"AllToDos" ],
+	"commentStamp" : "",
+	"instvars" : [
+		"created",
+		"text",
+		"open" ],
+	"name" : "ToDo",
+	"pools" : [
+		 ],
+	"super" : "Object",
+	"type" : "normal" }
