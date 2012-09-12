@@ -6,7 +6,7 @@ withText: txt
 	
 	todo := ToDo new.
 	todo text: txt.
-	todo created: Date today ddmmyyyy.
+	todo created: Date today yyyymmdd.
 	todo open: true.
 	AllToDos add: todo.
 	

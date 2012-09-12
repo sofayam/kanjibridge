@@ -20,7 +20,7 @@ renderContentOn: html
 			list: #(#open #closed);
 			selected: todo open;
 			beSubmitOnChange;
-			callback: [ :value | self halt. todo open: value ].
+			callback: [ :value |  todo open: value ].
 		html break.
 		]
 	].
