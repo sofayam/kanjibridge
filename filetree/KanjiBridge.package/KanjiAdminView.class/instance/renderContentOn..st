@@ -75,6 +75,12 @@ renderContentOn: html
 		
 	html break.
 
+	html anchor 
+		callback: [ self call: ToDoView new];
+		with: 'TODO List'.
+		
+	html break.
+
 
 	
 	html text: 'User Agent' , (self session currentRequest headerAt: 'user-agent').

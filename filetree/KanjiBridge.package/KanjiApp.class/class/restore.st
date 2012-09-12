@@ -3,3 +3,4 @@ restore
 
 	Kanji restore.
 	Word restore.
+	ToDo restore.

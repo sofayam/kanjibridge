@@ -94,7 +94,7 @@ renderContentOn: html
 		html textInput
 			id: 't';
 			autocapitalize: 'off';
-			autocapitalize: 'off';
+			autocorrect: 'off';
 			size: 15;
 			script: (html jQuery this autocomplete
 				sourceCallback: [ :term | Kanji containsTag: term]);
