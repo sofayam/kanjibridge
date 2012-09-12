@@ -1,0 +1,14 @@
+{
+	"category" : "KanjiBridge",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
+	"name" : "ToDoView",
+	"pools" : [
+		 ],
+	"super" : "KBComponent",
+	"type" : "normal" }
