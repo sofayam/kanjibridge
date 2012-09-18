@@ -6,25 +6,30 @@ renderContentOn: html
 	html textInput
 		id: 'f';
 		size: 40 ;
-		callback: [ :txt | ToDo withText: txt ].
+		callback: [ :txt | KanjiApp doCriticalDirty: [ToDo withText: txt ]].
 	].
 
-
+      html break.
 	html text: 'List  of of all ToDos.'.
 	html break.
-	
-	ToDo AllToDos do: [ :todo |
-		html form: [
-		  html text: ((todo created) , ' - ' , (todo text) , ' - ' , (todo open asString)).
-		  html select
-			list: #(#open #closed);
-			selected: todo open;
-			beSubmitOnChange;
-			callback: [ :value |  todo open: value ].
-		html break.
+	html table:
+		[ToDo AllToDos do: [ :todo |
+			html tableRow: [
+				
+		  		html tableData: todo created.
+				
+				html tableData: [html div class: (todo openAsString); with: (todo text)].
+				
+				html tableData: [
+		  			html anchor 
+					 	callback: [ todo toggle ];
+						with: (todo openAsString)
+				]
+			]
+
 		]
 	].
-	
+	html break.
 	self footer: html.
 
  
