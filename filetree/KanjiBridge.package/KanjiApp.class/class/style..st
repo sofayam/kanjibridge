@@ -1,6 +1,10 @@
 as yet unclassified
 style: view 
 
+	| always |
+	
+	always := '  .closed {text-decoration:line-through} '.
+
 	( KanjiApp userAgent: view is: 'ipad')  | ( KanjiApp userAgent: view is: 'ipod') 
 	
 	ifTrue:
@@ -22,7 +26,7 @@ style: view
   	   	filter: alpha(opacity=40); /* for mozilla */
 	}
 
-	'
+	' , always
 	].
 
 	" Default style sheet "
@@ -38,4 +42,4 @@ style: view
 	}
 
 	
-	'
+	' , always

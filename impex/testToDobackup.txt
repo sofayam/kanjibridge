@@ -1,1 +1,1 @@
-[{"text":"foo","open":true,"created":"2012-09-11T21:54:18.749+02:00"},{"text":"bar","open":true,"created":"2012-09-11T21:54:27.43+02:00"}]
+[{"text":"foo","open":false,"created":"2012-09-11T21:54:18.749+02:00"},{"text":"bar","open":false,"created":"2012-09-11T21:54:27.43+02:00"},{"text":"bla bla","open":false,"created":"2012-09-18"},{"text":"and some more","open":true,"created":"2012-09-18"},{"text":"bladiebla","open":true,"created":"2012-09-18"},{"text":"three at the top are closed","open":true,"created":"2012-09-18"}]
