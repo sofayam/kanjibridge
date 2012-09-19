@@ -70,6 +70,12 @@ renderContentOn: html
 	html break.
 
 	html anchor 
+		callback: [ KanjiApp stashJewels];
+		with: 'stash jewels'.
+		
+	html break.
+
+	html anchor 
 		callback: [ KanjiApp loadChanges ];
 		with: 'load code changes from repository'.
 		
