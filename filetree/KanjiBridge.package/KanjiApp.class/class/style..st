@@ -5,7 +5,7 @@ style: view
 	
 	always := '  .closed {text-decoration:line-through} '.
 
-	( KanjiApp userAgent: view is: 'ipad')  | ( KanjiApp userAgent: view is: 'ipod') 
+	( KanjiApp userAgent: view is: 'ipad')  | ( KanjiApp userAgent: view is: 'ipod') |  ( KanjiApp userAgent: view is: 'Nexus') 
 	
 	ifTrue:
 	
