@@ -1,0 +1,15 @@
+{
+	"category" : "KanjiBridge",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		"start",
+		"finish" ],
+	"name" : "KanjiNeighbourhoodView",
+	"pools" : [
+		 ],
+	"super" : "KBComponent",
+	"type" : "normal" }

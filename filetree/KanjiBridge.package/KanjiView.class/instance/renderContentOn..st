@@ -101,6 +101,14 @@ renderContentOn: html
 			callback: [ :value | KanjiApp doCriticalDirty: [ (self kanji) tag: value]].
 	].	
 	
+	html break.
+	html text: 'Neighbourhood..'.
+	#(10 50 100 200) do: [:i |
+	       html anchor callback: [ 
+			(self call: (KanjiNeighbourhoodView of: i around: (self kanji index)))]; 
+		with: ((i asString) , ' ')
+	].
+	
 	self footer: html
 	
 
