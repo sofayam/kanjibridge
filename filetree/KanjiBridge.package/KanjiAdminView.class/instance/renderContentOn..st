@@ -88,9 +88,12 @@ renderContentOn: html
 	html break.
 
 
-	
+	html horizontalRule.
 	html text: 'User Agent' , (self session currentRequest headerAt: 'user-agent').
 	html break.
+	
+ 	html horizontalRule.
+	html text: (KanjiApp hgLog).
 	
 	
 		

@@ -1,7 +1,11 @@
 as yet unclassified
 localCommand: fileName
 
-	| cmd |
+	| cmd resTxt |
 	cmd :=  '(cd ' , KanjiApp homeDirectory , '/kanjibridge ; ./' , fileName , ')'.
 
-	Transcript show: (PipeableOSProcess command: cmd) output
+	resTxt := (PipeableOSProcess command: cmd) output.
+	
+	Transcript show: resTxt.
+	
+	^ resTxt
