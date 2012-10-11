@@ -12,7 +12,7 @@ style: view
 	[ ^ '
 	body { font-size: 40pt; }
 	.text { font-size: 40pt; }
-	.kanji { font-size: 100pt;  text-align: center;}
+	.kanji { font-size: 100pt;  text-align: center; word-wrap: break-word}
 	input[type=text] {
 	    height: 50px;
 	   /* width: 200px; */
