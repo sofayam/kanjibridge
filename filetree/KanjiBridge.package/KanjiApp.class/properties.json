@@ -6,7 +6,8 @@
 		"bgbackup",
 		"dirty",
 		"kanjiLock",
-		"lastBackup" ],
+		"lastBackup",
+		"startupTime" ],
 	"commentStamp" : "mwa 9/4/2012 11:37",
 	"instvars" : [
 		 ],
