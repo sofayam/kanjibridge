@@ -1,0 +1,4 @@
+ KanjiApp startup.
+ KanjiApp restore.
+
+

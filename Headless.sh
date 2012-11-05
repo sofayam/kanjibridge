@@ -24,4 +24,4 @@ exec "$LINUX/squeak" \
 	-vm-sound-null \
 	"$image" \
 	2>&1 >/dev/null \
-	$RESOURCES/startup.st
+	~/kanjibridge/startup.st
