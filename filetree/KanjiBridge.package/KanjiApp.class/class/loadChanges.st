@@ -11,4 +11,6 @@ loadChanges
 			'/kanjibridge/filetree/'));
         package: 'KanjiBridge';
         load.
+
+    SmalltalkImage current saveSession.
  ] fork 
