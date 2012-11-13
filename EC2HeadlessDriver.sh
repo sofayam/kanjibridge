@@ -3,6 +3,6 @@ do
 	./Headless.sh
 	msg="Restart on `date`"
 	echo $msg
-	touch "$msg"
+	touch restarts/"$msg"
 	sleep 60
 done
