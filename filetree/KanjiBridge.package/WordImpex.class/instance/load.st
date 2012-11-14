@@ -23,7 +23,9 @@ load
 
 	KanjiApp doCritical: [
 	entries do: [ :entry |
+		(entry size >  1) ifTrue: [
 		firstCR := entry findString: (String with: (Character lf)).
+		(firstCR > 1) ifTrue: [
 		jap := entry copyFrom: 1 to: (firstCR - 1).
 		meaning := entry copyFrom: (firstCR + 1) to: (entry size).
 		
@@ -32,14 +34,15 @@ load
 		 (opbOff < clbOff) ifTrue: [ 
 		 	kana :=  jap copyFrom: opbOff + 1 to: clbOff -1.
 			kanji := jap copyFrom: 1 to: opbOff - 1.
-		 	"Transcript show: '<<Entry'.
+		 	Transcript show: '<<Entry'.
 		  	Transcript show: 'jap ', jap.
-		 	Transcript show: 'meaning ' , meaning , '>>'.	"
+		 	Transcript show: 'meaning ' , meaning , '>>'.	
 	        	word := Word withKanji: kanji  andKana: kana andMeaning: meaning.
 			word tag: subject.
 		]
 	   ]
-		 
+	]
+	]	 
 	].
 	
 
