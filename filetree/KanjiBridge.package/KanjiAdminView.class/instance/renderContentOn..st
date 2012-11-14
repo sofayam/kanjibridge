@@ -12,6 +12,10 @@ renderContentOn: html
 		callback: [ self call: (WordView newWithWord: (Word anyWord))];
 		with: ( 'words (' , Word count asString  , ')' ).
 		
+	html anchor
+		callback: [ Word initialize ];
+		with: ( 'reset' ).
+		
 	html break.
 	
 	html anchor 

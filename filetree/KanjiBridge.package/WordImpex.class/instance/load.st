@@ -23,6 +23,7 @@ load
 
 	KanjiApp doCritical: [
 	entries do: [ :entry |
+
 		(entry size >  1) ifTrue: [
 		firstCR := entry findString: (String with: (Character lf)).
 		(firstCR > 1) ifTrue: [
