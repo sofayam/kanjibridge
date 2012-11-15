@@ -19,3 +19,10 @@ Gofer new
                     (FileDirectory on: '/home/mark/filetree/repository/'));
         package: 'MonticelloFileTree-Core';
         load.
+
+
+Gofer it
+ squeaksource: 'MetacelloRepository';
+ package: 'ConfigurationOfRFB';
+ load.
+((Smalltalk at: #ConfigurationOfRFB) project perform: #latestVersion) load.
