@@ -65,7 +65,7 @@ class CustomSMTPServer(smtpd.SMTPServer):
         processWords(subject,payload)
         return
 
-server = CustomSMTPServer(('127.0.0.1', 1025), None)
+server = CustomSMTPServer(('0.0.0.0', 25), None)
 
 asyncore.loop()
 
