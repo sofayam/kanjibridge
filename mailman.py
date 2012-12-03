@@ -18,14 +18,15 @@ cursor = conn.cursor()
 def stashword(kanji,kana,eng,tag):
     eng = eng.replace("'","")
     #print "STASHIT!!! k: %s k: %s e: %s" % (kanji,kana,eng)
-    #print kanji,kana,eng
+    #print kanji,kana
     command = "INSERT INTO words (kanji, kana, english) VALUES ('%s','%s','%s')" % (kanji,kana,eng)
     #print "Command is >>>", command, "<<<"
     cursor.execute(command)
 
 def processWords(subject,payload):
 
-    #print "********Subject:", subject, "Payload exists"
+    #print "********Subject:", subject
+    #print "++++++++Payload:", payload
 
     words = payload.split("\n\n")
     #print "done split payload"
@@ -47,7 +48,7 @@ def processWords(subject,payload):
             else:
                 for wd in wspli:
                     print "too long : ", wd
-            print "------"
+            #print "------"
         #f = open("stash.tmp","w")
         #f.write(wd)
         #f.close()
@@ -55,17 +56,21 @@ def processWords(subject,payload):
 class CustomSMTPServer(smtpd.SMTPServer):
     
     def process_message(self, peer, mailfrom, rcpttos, data):
-        #print 'Receiving message from:', peer
-        #print 'Message addressed from:', mailfrom
-        #print 'Message addressed to  :', rcpttos
-        #print 'Message length        :', len(data)
+        print 'Receiving message from:', peer
+        print 'Message addressed from:', mailfrom
+        print 'Message addressed to  :', rcpttos
+        print 'Message length        :', len(data)
         msg = email.message_from_string(data)
         subject = msg.get('Subject')
-        payload = msg.get_payload()
+        #payload = unicode(msg.get_payload(decode=True),'utf-8')
+        payload = msg.get_payload(decode=True)
+        #print payload
         processWords(subject,payload)
         return
 
 server = CustomSMTPServer(('0.0.0.0', 25), None)
+
+print "starting mailman"
 
 asyncore.loop()
 

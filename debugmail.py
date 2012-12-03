@@ -14,10 +14,11 @@ class CustomSMTPServer(smtpd.SMTPServer):
         headers = Parser().parsestr(data)
         print headers['Subject']
         print "-----------------------------------"
-        print email.message_from_string(data).get_payload()
+        print email.message_from_string(data).get_payload(decode=True)
+        print unicode(email.message_from_string(data).get_payload(decode=True),'utf-8')
         return
 
-server = CustomSMTPServer(('127.0.0.1', 1025), None)
+server = CustomSMTPServer(('0.0.0.0', 25), None)
 
 asyncore.loop()
 
