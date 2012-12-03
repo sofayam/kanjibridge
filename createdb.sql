@@ -2,9 +2,7 @@ CREATE DATABASE kanjibridge;
 
 use kanjibridge;
 
-
 CREATE TABLE kanji (
-
        id INT,
        glyph char(4),
        onyomi varchar(400),
@@ -22,4 +20,13 @@ CREATE TABLE kanji (
 CREATE TABLE kanjitags (
        id INT,
        name varchar(40)
-)
+);
+
+
+CREATE TABLE words (
+       id INT NOT NULL AUTO_INCREMENT,
+       kanji varchar(40),
+       kana varchar(400),
+       english varchar(400),
+       PRIMARY KEY (id)
+);
