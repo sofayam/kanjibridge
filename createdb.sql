@@ -5,10 +5,10 @@ use kanjibridge;
 CREATE TABLE kanji (
        id INT,
        glyph char(4),
-       onyomi varchar(400),
-       kunyomi varchar(400),
-       keyword varchar(400),
-       meaning varchar(400),
+       onyomi TEXT,
+       kunyomi TEXT,
+       keyword TEXT,
+       meaning TEXT,
        PRIMARY KEY(id)
 );
 
@@ -19,14 +19,14 @@ CREATE TABLE kanji (
 
 CREATE TABLE kanjitags (
        id INT,
-       name varchar(40)
+       name TEXT
 );
 
 
 CREATE TABLE words (
        id INT NOT NULL AUTO_INCREMENT,
        kanji varchar(40),
-       kana varchar(400),
-       english varchar(400),
+       kana TEXT,
+       english TEXT,
        PRIMARY KEY (id)
 );

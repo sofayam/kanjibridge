@@ -1,13 +1,10 @@
-import MySQLdb
+import database
 
 import mergeinput
 
 dict = mergeinput.merge()
 
-conn = MySQLdb.connect (host="localhost", user="root", 
-                        passwd="blabla", db="kanjibridge")
-
-cursor = conn.cursor()
+cursor = database.cursor()
 
 for row in dict.keys():
     print row
