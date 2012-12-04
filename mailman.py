@@ -4,15 +4,12 @@ import json
 import re
 from jchars import *
 import email
-import MySQLdb
+import database
 
 import smtpd
 import asyncore
 
-conn = MySQLdb.connect (host="localhost", user="root", 
-                        passwd="blabla", db="kanjibridge")
-
-cursor = conn.cursor()
+cursor = database.cursor()
 
 
 def stashword(kanji,kana,eng,tag):

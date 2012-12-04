@@ -1,13 +1,10 @@
 import json
-import MySQLdb
+import database
 
 txt = open("impex/kanjitagbackup.txt").read()
 dict = json.loads(txt)
 
-conn = MySQLdb.connect (host="localhost", user="root", 
-                        passwd="blabla", db="kanjibridge")
-
-cursor = conn.cursor()
+cursor = database.cursor()
 
 for name in dict.keys():
     for idx in dict[name]:
