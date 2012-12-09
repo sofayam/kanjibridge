@@ -3,3 +3,4 @@ jobr = '（'
 
 jcbr = '）'
 
+jcomma = '、'

@@ -3,7 +3,9 @@ import database
 
 urls = ('/kanji/(.*)/', 'kanji',
 
-        '/neighbours/(.*)/(.*)/', 'neighbours')
+        '/neighbours/(.*)/(.*)/', 'neighbours',
+
+        '/onyomi/(.*)/', 'onyomi')
 
 render = web.template.render('templates')
 
@@ -30,6 +32,16 @@ class neighbours:
         c.execute(cmd)
         batch = c.fetchall()
         return render.neighbours(batch)
+
+class onyomi:
+    def GET(self,yomi):
+        c = database.cursor()
+        yomi = yomi.encode('utf-8')
+        cmd = "SELECT kanji.id, kanji.glyph FROM onyomi, kanji WHERE (onyomi.yomi = '%s' AND kanji.id = onyomi.id)" % yomi
+        c.execute(cmd)
+        batch = c.fetchall()
+        return render.onyomi(yomi,batch)
+
 
 if __name__ == "__main__":
     app.run()

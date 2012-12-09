@@ -30,3 +30,8 @@ CREATE TABLE words (
        english TEXT,
        PRIMARY KEY (id)
 );
+
+CREATE TABLE onyomi (
+       yomi TEXT,
+       id INT
+);
