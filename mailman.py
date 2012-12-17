@@ -4,21 +4,10 @@ import json
 import re
 from jchars import *
 import email
-import database
-
+import word
 import smtpd
 import asyncore
 
-cursor = database.cursor()
-
-
-def stashword(kanji,kana,eng,tag):
-    eng = eng.replace("'","")
-    #print "STASHIT!!! k: %s k: %s e: %s" % (kanji,kana,eng)
-    #print kanji,kana
-    command = "INSERT INTO words (kanji, kana, english) VALUES ('%s','%s','%s')" % (kanji,kana,eng)
-    #print "Command is >>>", command, "<<<"
-    cursor.execute(command)
 
 def processWords(subject,payload):
 
@@ -40,7 +29,7 @@ def processWords(subject,payload):
             if sres:
                 sgro = sres.groups()
                 #print "just right : %s < %s >" % sres.groups()
-                stashword(kanji=sgro[0],kana=sgro[1],eng=wspli[1],tag=subject)
+                word.stashword(kanji=sgro[0],kana=sgro[1],eng=wspli[1],tag=subject)
             
             else:
                 for wd in wspli:

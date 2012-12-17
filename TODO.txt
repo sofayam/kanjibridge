@@ -1,23 +1,17 @@
-*EC2
-
-Remap to port 80
-xSort out cost over 3 years
 
 
-*Seaside
+start page - health and statistics
+      kanji
+	kanjitags
+      	neighbours
+      word
+	wordtags
 
-sniff user agent
-css tricks and pretty colours
-move to FileTree/git
+jquery autocomplete
+
+css (conditional?)
+
+SRS
 
 
-*App
 
-xsolve autocomplete bug
-words!
-regular autosave - started once you have done a restore
-remote control for (repo update, save, save and quit)
-
-*Google App Engine
-
-mail -> rest transformer for words
