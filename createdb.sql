@@ -28,7 +28,8 @@ CREATE TABLE words (
        kanji varchar(40),
        kana TEXT,
        english TEXT,
-       PRIMARY KEY (id)
+       PRIMARY KEY (id),
+       created TIMESTAMP DEFAULT NOW()
 );
 
 CREATE TABLE onyomi (
