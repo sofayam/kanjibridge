@@ -1,11 +1,16 @@
 import web
+import json
 import database
 
 urls = ('/kanji/(.*)/', 'kanji',
 
         '/neighbours/(.*)/(.*)/', 'neighbours',
 
-        '/onyomi/(.*)/', 'onyomi')
+        '/onyomi/(.*)/', 'onyomi',
+
+        '/sugg/(.*)/', 'sugg',
+        '/suggform/', 'suggform',
+)
 
 render = web.template.render('templates')
 
@@ -42,6 +47,20 @@ class onyomi:
         batch = c.fetchall()
         return render.onyomi(yomi,batch)
 
+class suggform:
+    def GET(self):
+        return render.suggform()
+
+class sugg:
+    def GET(self,part):
+        c = database.cursor()
+        cmd = "SELECT kanji.keyword FROM kanji WHERE (kanji.keyword LIKE '%s%%')" % part
+        print cmd
+        c.execute(cmd)
+        res = c.fetchmany(10)
+        res = [tup[0] for tup in res]
+        web.header('Content-Type', 'application/json')
+        return json.dumps(res)
 
 if __name__ == "__main__":
     app.run()
