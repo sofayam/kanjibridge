@@ -10,6 +10,8 @@ urls = ('/kanji/(.*)/', 'kanji',
 
         '/kwsugg/(.*)/', 'kwsugg',
 
+        '/ktsugg/(.*)/', 'ktsugg',
+
         '/ktag/(.*)/', 'ktag',
 
         '/addKanjiTag/(.*)/(.*)/', 'addKanjiTag',
@@ -94,6 +96,18 @@ class kwsugg:
         res = [tup[0] for tup in res]
         web.header('Content-Type', 'application/json')
         return json.dumps(res)
+
+class ktsugg:
+    def GET(self,part):
+        c = database.cursor()
+        cmd = "SELECT DISTINCT name FROM kanjitags WHERE (name LIKE '%s%%')" % part
+        print cmd
+        c.execute(cmd)
+        res = c.fetchmany(10)
+        res = [tup[0] for tup in res]
+        web.header('Content-Type', 'application/json')
+        return json.dumps(res)
+        
 
 if __name__ == "__main__":
     app.run()

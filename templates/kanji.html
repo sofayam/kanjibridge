@@ -14,19 +14,34 @@ $def with (id,glyph,onyomi,kunyomi,keyword,meaning,tags)
                 })
        }
     });
-    $$("#formid").submit(function() {
+    $$("#kwformid").submit(function() {
       var whereto = "/kanji/" + $$("#kwsugg").val() + "/";
       window.location = whereto;
       return false;
     });
+
+    $$("#ktsugg").autocomplete({
+       source: function(req, add){  
+                requrl = "/ktsugg/" + req.term + "/"; 
+                $$.getJSON(requrl, req, function(data) {  
+                    add(data);                
+                })
+       }
+    });
+    $$("#ktformid").submit(function() {
+      var whereto = "/addKanjiTag/" + $id + "/" + $$("#ktsugg").val() + "/";
+      window.location = whereto;
+      return false;
+    });
+
 })
 </script>
 </head>
 
 <body>
-<form id="formid">
+<form id="kwformid">
   <input id="kwsugg" type="text">
-  <button id="doit">doit</button> 
+  <button id="doit">go</button> 
 </form>
 
 <hr>
@@ -46,6 +61,12 @@ $if len(tags) > 0:
 $for t in tags:
       <a href=/ktag/$t/>$t</a>
       <br>
+
+<form id="ktformid">
+  <input id="ktsugg" type="text">
+  <button id="doit">add</button> 
+</form>
+
 <hr>
 <a href=/neighbours/$id/10/>neighbours</a>
 </body>
