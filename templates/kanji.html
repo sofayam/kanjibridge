@@ -1,4 +1,4 @@
-$def with (id,glyph,onyomi,kunyomi,keyword,meaning)
+$def with (id,glyph,onyomi,kunyomi,keyword,meaning,tags)
 <html>
 <head>
   <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
@@ -41,6 +41,12 @@ kun: $kunyomi
 <br>
 meaning: [ $meaning ] 
 <br>
+$if len(tags) > 0:
+      <h1>Tags</h1>
+$for t in tags:
+      <a href=/tag/$t/>$t</a>
+      <br>
+<hr>
 <a href=/neighbours/$id/10/>neighbours</a>
 </body>
 </html>

@@ -28,7 +28,18 @@ class kanji:
         print "***", cmd
         c.execute(cmd)
         k = c.fetchone()
-        return render.kanji(*k)
+        #print "+++k ", k
+        kidx = k[0]
+        cmd = 'SELECT name FROM kanjitags WHERE (id = %s)' % kidx
+        print "***", cmd
+
+        c.execute(cmd)
+        kt = c.fetchall()
+        #print "+++kt ", kt
+        kt = [tup[0] for tup in kt]
+        args = list(k) + [ kt ]
+        #print "+++args ", args
+        return render.kanji(*args)
 
 class neighbours:
     def GET(self,kidx,wdth):
