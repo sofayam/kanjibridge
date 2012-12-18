@@ -1,25 +1,46 @@
 $def with (id,glyph,onyomi,kunyomi,keyword,meaning)
 <html>
+<head>
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script type="text/javascript">
+  $$(function() {
+    $$("#kwsugg").autocomplete({
+       source: function(req, add){  
+                requrl = "/kwsugg/" + req.term + "/"; 
+                $$.getJSON(requrl, req, function(data) {  
+                    add(data);                
+                })
+       }
+    });
+    $$("#formid").submit(function() {
+      var whereto = "/kanji/" + $$("#kwsugg").val() + "/";
+      window.location = whereto;
+      return false;
+    });
+})
+</script>
+</head>
+
 <body>
+<form id="formid">
+  <input id="kwsugg" type="text">
+  <button id="doit">doit</button> 
+</form>
+
+<hr>
 <h1>$glyph</h1>
-
 keyword: $keyword
-
 <br>
-
+id: $id
+<br>
 on: $onyomi
-
 <br>
-
 kun: $kunyomi
-
 <br>
-
-meaning: [ $meaning ] !
-
+meaning: [ $meaning ] 
 <br>
-
 <a href=/neighbours/$id/10/>neighbours</a>
-
 </body>
 </html>
