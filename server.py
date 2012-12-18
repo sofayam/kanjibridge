@@ -8,8 +8,8 @@ urls = ('/kanji/(.*)/', 'kanji',
 
         '/onyomi/(.*)/', 'onyomi',
 
-        '/sugg/(.*)/', 'sugg',
-        '/suggform/', 'suggform',
+        '/kwsugg/(.*)/', 'kwsugg',
+
 )
 
 render = web.template.render('templates')
@@ -21,7 +21,10 @@ class kanji:
         if not kidx:
             kidx = '1'
         c = database.cursor()
-        cmd = 'SELECT * FROM kanji WHERE (id = %s)' % kidx
+        if kidx.isdigit():
+            cmd = 'SELECT * FROM kanji WHERE (id = %s)' % kidx
+        else:
+            cmd = "SELECT * FROM kanji WHERE (keyword = '%s')" % kidx
         print "***", cmd
         c.execute(cmd)
         k = c.fetchone()
@@ -47,11 +50,8 @@ class onyomi:
         batch = c.fetchall()
         return render.onyomi(yomi,batch)
 
-class suggform:
-    def GET(self):
-        return render.suggform()
 
-class sugg:
+class kwsugg:
     def GET(self,part):
         c = database.cursor()
         cmd = "SELECT kanji.keyword FROM kanji WHERE (kanji.keyword LIKE '%s%%')" % part
