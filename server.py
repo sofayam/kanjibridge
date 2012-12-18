@@ -10,6 +10,8 @@ urls = ('/kanji/(.*)/', 'kanji',
 
         '/kwsugg/(.*)/', 'kwsugg',
 
+        '/ktag/(.*)/', 'ktag',
+
 )
 
 render = web.template.render('templates')
@@ -51,6 +53,16 @@ class neighbours:
         c.execute(cmd)
         batch = c.fetchall()
         return render.neighbours(batch)
+
+class ktag:
+    def GET(self,name):
+        c = database.cursor()
+        cmd = "SELECT kanji.id, kanji.glyph, kanji.keyword FROM kanji, kanjitags WHERE kanji.id = kanjitags.id and kanjitags.name = '%s'" % (name)
+        print "***", cmd
+        c.execute(cmd)
+        batch = c.fetchall()
+        return render.ktag(name,batch)
+
 
 class onyomi:
     def GET(self,yomi):
