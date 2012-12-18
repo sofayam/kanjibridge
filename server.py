@@ -12,6 +12,8 @@ urls = ('/kanji/(.*)/', 'kanji',
 
         '/ktag/(.*)/', 'ktag',
 
+        '/addKanjiTag/(.*)/(.*)/', 'addKanjiTag',
+
 )
 
 render = web.template.render('templates')
@@ -42,6 +44,14 @@ class kanji:
         args = list(k) + [ kt ]
         #print "+++args ", args
         return render.kanji(*args)
+
+class addKanjiTag:
+    def GET(self,kidx,tag):
+        c = database.cursor()
+        cmd = "INSERT INTO kanjitags VALUES (%s, '%s')" % (kidx,tag)
+        c.execute(cmd)
+        web.redirect('/kanji/%s/' % kidx)
+        
 
 class neighbours:
     def GET(self,kidx,wdth):
