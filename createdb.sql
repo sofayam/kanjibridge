@@ -12,16 +12,15 @@ CREATE TABLE kanji (
        PRIMARY KEY(id)
 );
 
-
-#       id INT NOT NULL AUTO_INCREMENT,
-
-# INSERT INTO kanji VALUES (1, '')
-
 CREATE TABLE kanjitags (
        id INT,
        name TEXT
 );
 
+CREATE TABLE wordtags (
+       id INT,
+       name TEXT
+);
 
 CREATE TABLE words (
        id INT NOT NULL AUTO_INCREMENT,

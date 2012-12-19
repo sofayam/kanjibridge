@@ -1,8 +1,6 @@
-import MySQLdb
-
 import database
 
-import json
+import simplejson as json
 
 dict = {}
 
@@ -21,5 +19,5 @@ for row in rows:
         dict[name] = []
     dict[name].append(idx)
 
-print json.dumps(dict)
+print json.dumps(dict, indent=4, sort_keys=True)
     
