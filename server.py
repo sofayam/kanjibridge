@@ -1,6 +1,8 @@
 import web
 import json
 import database
+import kanjitag
+import word
 
 urls = ('/kanji/(.*)/', 'kanji',
 
@@ -14,13 +16,23 @@ urls = ('/kanji/(.*)/', 'kanji',
 
         '/ktag/(.*)/', 'ktag',
 
+        '/ktags/', 'ktags',
+
         '/addKanjiTag/(.*)/(.*)/', 'addKanjiTag',
+
+        '/', 'index',
 
 )
 
 render = web.template.render('templates')
 
 app = web.application(urls,globals())
+
+class index:
+    def GET(self):
+        ktagcount = len(kanjitag.getTags())
+        wordcount = word.count()
+        return render.index(ktagcount,wordcount)
 
 class kanji:
     def GET(self,kidx):
@@ -75,6 +87,10 @@ class ktag:
         batch = c.fetchall()
         return render.ktag(name,batch)
 
+class ktags:
+    def GET(self):
+        taglist = kanjitag.getTaggedKanjis()
+        return render.ktags(taglist)
 
 class onyomi:
     def GET(self,yomi):
@@ -88,12 +104,7 @@ class onyomi:
 
 class kwsugg:
     def GET(self,part):
-        c = database.cursor()
-        cmd = "SELECT kanji.keyword FROM kanji WHERE (kanji.keyword LIKE '%s%%')" % part
-        print cmd
-        c.execute(cmd)
-        res = c.fetchmany(10)
-        res = [tup[0] for tup in res]
+        res = kanjitag.getTags()
         web.header('Content-Type', 'application/json')
         return json.dumps(res)
 
