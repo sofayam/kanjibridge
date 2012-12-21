@@ -36,3 +36,6 @@ def stashword(kanji,kana,eng,tags):
             print "*** tag already exists"
 
 
+def count():
+    cursor.execute("SELECT COUNT(*) FROM words")
+    return cursor.fetchone()[0]
