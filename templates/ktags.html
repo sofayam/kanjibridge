@@ -1,0 +1,12 @@
+$def with (ktags)
+
+<html>
+<body>
+<h1>List of all tags</h1>
+$for ktag in ktags:
+     <a href=/ktag/$ktag[0]/>$ktag[0]</a>
+     $for kanji in ktag[1]:
+           <a href=/kanji/$kanji[1]/>$kanji[0]</a>
+     <br>
+</body>
+</html>
