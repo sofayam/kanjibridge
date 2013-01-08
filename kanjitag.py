@@ -1,12 +1,20 @@
 import database
 
 
-def getTags():
+def getTags(part=None):
     c = database.cursor()
-
-    c.execute("SELECT DISTINCT name FROM kanjitags")
+    if part:
+        c.execute("SELECT DISTINCT name FROM kanjitags where (name LIKE '%s%%')") % part
+    else:
+        c.execute("SELECT DISTINCT name FROM kanjitags")
     res = c.fetchmany(10)
     res = [tup[0] for tup in res]
+    return res
+    
+def getTagCount():
+    c = database.cursor()
+    c.execute("SELECT COUNT(DISTINCT name) FROM kanjitags")
+    res = c.fetchone()[0]
     return res
     
 

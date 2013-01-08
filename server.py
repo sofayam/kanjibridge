@@ -2,9 +2,11 @@ import web
 import json
 import database
 import kanjitag
-import word
+import wordutils
 
 urls = ('/kanji/(.*)/', 'kanji',
+
+        '/word/(.*)/', 'word',
 
         '/neighbours/(.*)/(.*)/', 'neighbours',
 
@@ -14,11 +16,17 @@ urls = ('/kanji/(.*)/', 'kanji',
 
         '/ktsugg/(.*)/', 'ktsugg',
 
+        '/wtsugg/(.*)/', 'wtsugg',
+
+        '/wsugg/(.*)/', 'wsugg',
+
         '/ktag/(.*)/', 'ktag',
 
         '/ktags/', 'ktags',
 
         '/addKanjiTag/(.*)/(.*)/', 'addKanjiTag',
+
+        '/addWordTag/(.*)/(.*)/', 'addWordTag',
 
         '/', 'index',
 
@@ -30,8 +38,8 @@ app = web.application(urls,globals())
 
 class index:
     def GET(self):
-        ktagcount = len(kanjitag.getTags())
-        wordcount = word.count()
+        ktagcount = len(kanjitag.getTagCount())
+        wordcount = wordutils.count()
         return render.index(ktagcount,wordcount)
 
 class kanji:
@@ -59,12 +67,46 @@ class kanji:
         #print "+++args ", args
         return render.kanji(*args)
 
+class word:
+    def GET(self,widx):
+        if not widx:
+            widx = '1'
+        c = database.cursor()
+        if widx.isdigit():
+            cmd = 'SELECT * FROM words WHERE (id = %s)' % widx
+        else:
+            cmd = "SELECT * FROM words WHERE (kanji = '%s')" % widx
+        print "***", cmd
+        c.execute(cmd)
+        w = c.fetchone()
+        #print "+++w ", w
+        widx = w[0]
+        cmd = 'SELECT name FROM wordtags WHERE (id = %s)' % widx
+        print "***", cmd
+
+        c.execute(cmd)
+        wt = c.fetchall()
+        #print "+++wt ", wt
+        wt = [tup[0] for tup in wt]
+        args = list(w) + [ wt ]
+        print "+++args ", args
+        return render.word(*args)
+
+
+
 class addKanjiTag:
     def GET(self,kidx,tag):
         c = database.cursor()
         cmd = "INSERT INTO kanjitags VALUES (%s, '%s')" % (kidx,tag)
         c.execute(cmd)
         web.redirect('/kanji/%s/' % kidx)
+
+class addWordTag:
+    def GET(self,widx,tag):
+        c = database.cursor()
+        cmd = "INSERT INTO wordtags VALUES (%s, '%s')" % (widx,tag)
+        c.execute(cmd)
+        web.redirect('/word/%s/' % widx)
         
 
 class neighbours:
@@ -104,7 +146,13 @@ class onyomi:
 
 class kwsugg:
     def GET(self,part):
-        res = kanjitag.getTags()
+        c = database.cursor()
+        #res = kanjitag.getTags(part)  # B U G
+        cmd = "SELECT kanji.keyword FROM kanji WHERE (keyword LIKE '%s%%')" % part
+        print cmd
+        c.execute(cmd)
+        res = c.fetchmany(10)
+        res = [tup[0] for tup in res]
         web.header('Content-Type', 'application/json')
         return json.dumps(res)
 
@@ -118,7 +166,30 @@ class ktsugg:
         res = [tup[0] for tup in res]
         web.header('Content-Type', 'application/json')
         return json.dumps(res)
+
+class wsugg:
+    def GET(self,part):
+        c = database.cursor()
+        cmd = "SELECT DISTINCT kanji FROM words WHERE (kanji LIKE '%s%%')" % part
+        print cmd
+        c.execute(cmd)
+        res = c.fetchmany(10)
+        res = [tup[0] for tup in res]
+        web.header('Content-Type', 'application/json')
+        return json.dumps(res)
+
         
+class wtsugg:
+    def GET(self,part):
+        c = database.cursor()
+        cmd = "SELECT DISTINCT name FROM wordtags WHERE (name LIKE '%s%%')" % part
+        print cmd
+        c.execute(cmd)
+        res = c.fetchmany(10)
+        res = [tup[0] for tup in res]
+        web.header('Content-Type', 'application/json')
+        return json.dumps(res)
+
 
 if __name__ == "__main__":
     app.run()

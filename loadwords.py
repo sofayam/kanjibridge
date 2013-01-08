@@ -1,8 +1,8 @@
 import json
-import word
+import wordutils
 
 f = open("impex/wordbackup.txt")
 wrds = json.loads(f.read())
 
 for wrd in wrds:
-    word.stashword(*wrd[1:])
+    wordutils.stashword(*wrd[1:])

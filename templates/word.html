@@ -1,0 +1,67 @@
+$def with (id,kanji,kana,english,timestamp,tags)
+<html>
+<head>
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script type="text/javascript">
+  $$(function() {
+    $$("#wsugg").autocomplete({
+       source: function(req, add){  
+                requrl = "/wsugg/" + req.term + "/"; 
+                $$.getJSON(requrl, req, function(data) {  
+                    add(data);                
+                })
+       }
+    });
+    $$("#wformid").submit(function() {
+      var whereto = "/word/" + $$("#wsugg").val() + "/";
+      window.location = whereto;
+      return false;
+    });
+
+    $$("#wtsugg").autocomplete({
+       source: function(req, add){  
+                requrl = "/wtsugg/" + req.term + "/"; 
+                $$.getJSON(requrl, req, function(data) {  
+                    add(data);                
+                })
+       }
+    });
+    $$("#wtformid").submit(function() {
+      var whereto = "/addWordTag/" + $id + "/" + $$("#wtsugg").val() + "/";
+      window.location = whereto;
+      return false;
+    });
+
+})
+</script>
+</head>
+
+<body>
+<form id="wformid">
+  <input id="wsugg" type="text">
+  <button id="doit">go</button> 
+</form>
+
+<hr>
+<h1>$kanji</h1>
+
+<br>
+kana: $kana
+<br>
+meaning: [ $english ] 
+<br>
+$if len(tags) > 0:
+      <h1>Tags</h1>
+$for t in tags:
+      <a href=/wtag/$t/>$t</a>
+      <br>
+
+<form id="wtformid">
+  <input id="wtsugg" type="text">
+  <button id="doit">add</button> 
+</form>
+
+</body>
+</html>
