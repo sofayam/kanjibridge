@@ -2,7 +2,7 @@ import database
 
 cursor = database.cursor()
 
-def stashword(kanji,kana,eng,tags):
+def stashword(kanji,kana,eng,tags,timestamp=None):
     eng = eng.replace("'","")
     #print "STASHIT!!! k: %s k: %s e: %s" % (kanji,kana,eng)
     #print kanji,kana
@@ -14,8 +14,13 @@ def stashword(kanji,kana,eng,tags):
         lastid = cursor.fetchone()[0]
         print "*** word entry already exists"
     else:
-        command = ("INSERT INTO words (kanji, kana, english) " + 
-                   "VALUES ('%s','%s','%s')") % (kanji,kana,eng)
+        if timestamp:
+            command = ("INSERT INTO words (kanji, kana, english, created) " + 
+                       "VALUES ('%s','%s','%s', '%s')") % (kanji,kana,eng,timestamp)
+        else:
+            command = ("INSERT INTO words (kanji, kana, english) " + 
+                       "VALUES ('%s','%s','%s')") % (kanji,kana,eng)
+            
         cursor.execute(command)
         print "*** word entry created"
         command = "SELECT LAST_INSERT_ID()"

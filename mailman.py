@@ -4,7 +4,7 @@ import json
 import re
 from jchars import *
 import email
-import word
+import wordutils
 import smtpd
 import asyncore
 
@@ -29,7 +29,7 @@ def processWords(subject,payload):
             if sres:
                 sgro = sres.groups()
                 #print "just right : %s < %s >" % sres.groups()
-                word.stashword(kanji=sgro[0],kana=sgro[1],eng=wspli[1],tag=subject)
+                wordutils.stashword(kanji=sgro[0],kana=sgro[1],eng=wspli[1],tag=subject)
             
             else:
                 for wd in wspli:
