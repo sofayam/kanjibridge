@@ -1,0 +1,10 @@
+$def with (wtag,wfts)
+
+<html>
+<body>
+<h1>List of all words with tag $wtag</h1>
+$for wft in wfts:
+     <a href=/word/$wft[0]/>$wft[1]</a>
+     <br>
+</body>
+</html>
