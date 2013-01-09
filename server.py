@@ -38,7 +38,7 @@ app = web.application(urls,globals())
 
 class index:
     def GET(self):
-        ktagcount = len(kanjitag.getTagCount())
+        ktagcount = kanjitag.getTagCount()
         wordcount = wordutils.count()
         return render.index(ktagcount,wordcount)
 

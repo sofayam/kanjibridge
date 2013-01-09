@@ -1,4 +1,4 @@
-CREATE DATABASE kanjibridge;
+CREATE DATABASE kanjibridge DEFAULT CHARACTER SET 'UTF8';
 
 use kanjibridge;
 
@@ -29,7 +29,7 @@ CREATE TABLE words (
        english TEXT,
        PRIMARY KEY (id),
        created TIMESTAMP DEFAULT NOW()
-);
+) DEFAULT CHARACTER SET 'UTF8' ;
 
 CREATE TABLE onyomi (
        yomi TEXT,
