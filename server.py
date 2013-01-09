@@ -8,6 +8,8 @@ urls = ('/kanji/(.*)/', 'kanji',
 
         '/word/(.*)/', 'word',
 
+        '/words/', 'words',
+
         '/neighbours/(.*)/(.*)/', 'neighbours',
 
         '/onyomi/(.*)/', 'onyomi',
@@ -29,6 +31,8 @@ urls = ('/kanji/(.*)/', 'kanji',
         '/addWordTag/(.*)/(.*)/', 'addWordTag',
 
         '/', 'index',
+
+        '/wordsForTag/(.*)/', 'wordsForTag',
 
 )
 
@@ -92,7 +96,24 @@ class word:
         print "+++args ", args
         return render.word(*args)
 
+class words:
+    def GET(self):
+        c = database.cursor()
+        # for each source tag
+        cmd = 'SELECT DISTINCT name FROM wordtags'
+        c.execute(cmd)
+        wt = c.fetchall()
+        wt = [tup[0] for tup in wt]
+        return render.words(wt)
 
+class wordsForTag:
+    def GET(self,tag):
+        # find all the words with this tag and retrieve the id and kanji
+        c = database.cursor()
+        cmd = "SELECT words.id, words.kanji FROM words, wordtags WHERE wordtags.name = '%s' AND wordtags.id = words.id" % tag
+        c.execute(cmd)
+        wfts = c.fetchall()        
+        return render.wordsForTag(tag, wfts)
 
 class addKanjiTag:
     def GET(self,kidx,tag):

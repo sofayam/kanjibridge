@@ -6,9 +6,9 @@ cursor = database.cursor()
 
 def processWords(subject,payload):
 
-    print "********Subject:", subject
-    print "++++++++Payload:", payload
-
+    #print "********Subject:", subject
+    #print "++++++++Payload:", payload
+    subject = "@" + subject
     words = payload.split("\n\n")
     #print "done split payload"
     for wrd in words:
@@ -24,6 +24,7 @@ def processWords(subject,payload):
             if sres:
                 sgro = sres.groups()
                 #print "just right : %s < %s >" % sres.groups()
+
                 stashword(kanji=sgro[0],kana=sgro[1],eng=wspli[1],tags=subject)
             
             else:
@@ -38,8 +39,8 @@ def processWords(subject,payload):
 
 def stashword(kanji,kana,eng,tags,timestamp=None):
     eng = eng.replace("'","")
-    print (kanji, kana, eng, timestamp)
-    print "STASHIT!!! k: %s k: %s e: %s" % (kanji,kana,eng)
+    #print (kanji, kana, eng, timestamp)
+    #print "STASHIT!!! k: %s k: %s e: %s" % (kanji,kana,eng)
     #print kanji,kana
     # check that word is not already there
     command = ("SELECT id FROM words WHERE " +
@@ -58,7 +59,7 @@ def stashword(kanji,kana,eng,tags,timestamp=None):
             
         print "+++ ", command
         cursor.execute(command)
-        print "*** word entry created"
+        #print "*** word entry created"
         command = "SELECT LAST_INSERT_ID()"
         cursor.execute(command)
         lastid = cursor.fetchone()[0]
