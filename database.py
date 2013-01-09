@@ -4,4 +4,8 @@ def cursor():
     conn = MySQLdb.connect (host="localhost", user="root", 
                         passwd="blabla", db="kanjibridge")
 
-    return conn.cursor()
+    curs = conn.cursor()
+
+    curs.execute("SET NAMES 'utf8'")
+
+    return curs
