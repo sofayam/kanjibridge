@@ -4,36 +4,24 @@ import database
 import kanjitag
 import wordutils
 
-urls = ('/kanji/(.*)/', 'kanji',
-
+urls = (
+        '/', 'index',
+        '/kanji/(.*)/', 'kanji',
         '/word/(.*)/', 'word',
-
         '/words/', 'words',
-
         '/neighbours/(.*)/(.*)/', 'neighbours',
-
         '/onyomi/(.*)/', 'onyomi',
-
         '/kwsugg/(.*)/', 'kwsugg',
-
         '/ktsugg/(.*)/', 'ktsugg',
-
         '/wtsugg/(.*)/', 'wtsugg',
-
         '/wsugg/(.*)/', 'wsugg',
-
         '/ktag/(.*)/', 'ktag',
-
         '/ktags/', 'ktags',
-
         '/addKanjiTag/(.*)/(.*)/', 'addKanjiTag',
-
         '/addWordTag/(.*)/(.*)/', 'addWordTag',
 
-        '/', 'index',
-
         '/wordsForTag/(.*)/', 'wordsForTag',
-
+        '/style.css', 'style',
 )
 
 render = web.template.render('templates')
@@ -44,7 +32,8 @@ class index:
     def GET(self):
         ktagcount = kanjitag.getTagCount()
         wordcount = wordutils.count()
-        return render.index(ktagcount,wordcount)
+        agent = web.ctx.env['HTTP_USER_AGENT']
+        return render.index(ktagcount,wordcount,agent)
 
 class kanji:
     def GET(self,kidx):
@@ -118,14 +107,14 @@ class wordsForTag:
 class addKanjiTag:
     def GET(self,kidx,tag):
         c = database.cursor()
-        cmd = "INSERT INTO kanjitags VALUES (%s, '%s')" % (kidx,tag)
+        cmd = "INSERT INTO kanjitags (id, name) VALUES (%s, '%s')" % (kidx,tag)
         c.execute(cmd)
         web.redirect('/kanji/%s/' % kidx)
 
 class addWordTag:
     def GET(self,widx,tag):
         c = database.cursor()
-        cmd = "INSERT INTO wordtags VALUES (%s, '%s')" % (widx,tag)
+        cmd = "INSERT INTO wordtags (id, name) VALUES (%s, '%s')" % (widx,tag)
         c.execute(cmd)
         web.redirect('/word/%s/' % widx)
         
@@ -164,6 +153,15 @@ class onyomi:
         batch = c.fetchall()
         return render.onyomi(yomi,batch)
 
+
+class style:
+    def GET(self):
+        mobile = 'ios' in web.ctx.env['HTTP_USER_AGENT'].lower() 
+        #mobile = True
+        return render.style(mobile)
+
+
+#------------------------------- J S O N -------------------------------------
 
 class kwsugg:
     def GET(self,part):

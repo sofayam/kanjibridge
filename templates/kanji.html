@@ -36,11 +36,12 @@ $def with (id,glyph,onyomi,kunyomi,keyword,meaning,tags)
 
 })
 </script>
+<link rel="stylesheet" type="text/css" href="/style.css" />
 </head>
 
 <body>
 <form id="kwformid">
-  <input id="kwsugg" type="text">
+  <input id="kwsugg" type="text" autocapitalize="off" autocorrect="off">
   <button id="doit">go</button> 
 </form>
 
@@ -63,7 +64,7 @@ $for t in tags:
       <br>
 
 <form id="ktformid">
-  <input id="ktsugg" type="text">
+  <input id="ktsugg" type="text" autocapitalize="off" autocorrect="off">
   <button id="doit">add</button> 
 </form>
 

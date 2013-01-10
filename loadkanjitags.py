@@ -7,6 +7,6 @@ dict = json.loads(txt)
 cursor = database.cursor()
 
 for name in dict.keys():
-    for idx in dict[name]:
-        command = "INSERT INTO kanjitags VALUES ('%s', '%s')" % (idx, name)
+    for idx,created in dict[name]:
+        command = "INSERT INTO kanjitags VALUES ('%s', '%s', '%s')" % (idx, name, created)
         cursor.execute(command)

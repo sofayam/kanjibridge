@@ -11,6 +11,8 @@ jquery autocomplete
 
 css (conditional?)
 
+delete tags with confirm
+
 SRS
 
 

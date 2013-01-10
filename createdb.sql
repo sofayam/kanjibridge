@@ -14,12 +14,14 @@ CREATE TABLE kanji (
 
 CREATE TABLE kanjitags (
        id INT,
-       name TEXT
+       name TEXT,
+       created TIMESTAMP DEFAULT NOW()
 );
 
 CREATE TABLE wordtags (
        id INT,
-       name TEXT
+       name TEXT,
+       created TIMESTAMP DEFAULT NOW()
 );
 
 CREATE TABLE words (
