@@ -156,7 +156,7 @@ class onyomi:
 
 class style:
     def GET(self):
-        mobile = 'ios' in web.ctx.env['HTTP_USER_AGENT'].lower() 
+        mobile = 'mobile' in web.ctx.env['HTTP_USER_AGENT'].lower() 
         #mobile = True
         return render.style(mobile)
 
