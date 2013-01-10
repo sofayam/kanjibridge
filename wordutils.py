@@ -65,14 +65,17 @@ def stashword(kanji,kana,eng,tags,timestamp=None):
         lastid = cursor.fetchone()[0]
     # check that tag is not already there
 
-    if type(tags) != type([]):
-        tags = [ tags ]
+    if type(tags) != type([]):      # hack to deal with non dated tags arriving via mail
+        tags = [ (tags, None) ]
 
-    for tag in tags:
+    for tag, created in tags:
         command = "SELECT * FROM wordtags WHERE (id = %s AND name = '%s')" % (lastid, tag)
         if cursor.execute(command) == 0:
             print "*** inserting word tag"
-            command = "INSERT INTO wordtags VALUES (%d, '%s')" % (lastid, tag)
+            if created: 
+                command = "INSERT INTO wordtags (id, name, created) VALUES (%d, '%s', '%s')" % (lastid, tag, created)
+            else:
+                command = "INSERT INTO wordtags (id, name) VALUES (%d, '%s')" % (lastid, tag)
             cursor.execute(command)
         else:
             print "*** tag already exists"

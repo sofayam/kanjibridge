@@ -36,11 +36,13 @@ $def with (id,kanji,kana,english,timestamp,tags)
 
 })
 </script>
+<link rel="stylesheet" type="text/css" href="/style.css" />
 </head>
 
 <body>
 <form id="wformid">
-  <input id="wsugg" type="text">
+  <input id="wsugg" type="text" autocapitalize="off" autocorrect="off">
+
   <button id="doit">go</button> 
 </form>
 
@@ -59,7 +61,7 @@ $for t in tags:
       <br>
 
 <form id="wtformid">
-  <input id="wtsugg" type="text">
+  <input id="wtsugg" type="text" autocapitalize="off" autocorrect="off">
   <button id="doit">add</button> 
 </form>
 
