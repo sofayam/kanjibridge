@@ -13,6 +13,8 @@ css (conditional?)
 
 delete tags with confirm
 
+show unused/used kanjis
+
 SRS
 
 
