@@ -4,6 +4,15 @@ from jchars import *
 
 cursor = database.cursor()
 
+def saveForReplay(subject,payload):
+    f = open("replay/%s" % subject, "w")
+    f.write(payload)
+    f.close()
+
+def replay(subject):
+    payload = open("replay/%s" % subject).read()
+    processWords(subject,payload)
+
 def processWords(subject,payload):
 
     #print "********Subject:", subject

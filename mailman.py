@@ -16,6 +16,7 @@ class CustomSMTPServer(smtpd.SMTPServer):
         #payload = unicode(msg.get_payload(decode=True),'utf-8')
         payload = msg.get_payload(decode=True)
         #print payload
+        wordutils.saveForReplay(subject,payload)
         wordutils.processWords(subject,payload)
         return
 
