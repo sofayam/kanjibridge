@@ -68,14 +68,15 @@ for k in k2id:
         notineither += 1
         holdouts[k]=True    
 
+holdoutlist = []
 
 for h in holdouts:
     if h in commonest:
-        print h, ":", (commonest[h][0]).rstrip(), ":", commonest[h][1]
-    else:
-        print h, "*RARITY*"
+#        print h, ":", (commonest[h][0]).rstrip(), ":", commonest[h][1]
+        holdoutlist.append([h,(commonest[h][0]).rstrip(), commonest[h][1]])
 
-
+for entry in sorted(holdoutlist, key=lambda x: x[2]):
+    print entry[0],":",entry[1],"(",entry[2],")" 
 
 print "not in 45", notin45
 print "not in 3", notin3
